@@ -28,11 +28,7 @@ on_off_state={}
 recieved_messages={}
 mqtt_clients = {}
 
-with open('text_file.txt','w') as file:
-    lis = apps.get_models()
-    for i in lis:
-        file.write(str(i)+"\n")
-    file.close()
+
 def login(request):
     return render(request,'Iot_platform_app/login.html')
 def login_details(request):
