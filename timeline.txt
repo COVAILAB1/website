@@ -1,4 +1,0 @@
-device creation page,mqtt topic creation - 2days
-profile page with history-1 day
-local server deployment - 1 day
-
