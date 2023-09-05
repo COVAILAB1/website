@@ -1,0 +1,272 @@
+;lkj asdf {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>krishtec</title>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static '/css/device.css' %}">
+    <link rel="stylesheet" href="{% static '/css/switch1.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body >
+  <div class="class-body"id="blur">
+    <div class="wui-side-menu open pinned" data-wui-theme="dark">
+        <div class="wui-side-menu-header">
+          <a href="#" class="wui-side-menu-trigger">K</a>
+         
+        </div>    
+        <ul class="wui-side-menu-items">
+          <li>
+            <a href="#" class="wui-side-menu-item">
+              <i class="box-ico fa fa-home fa-fw"></i> 
+              
+            </a>
+          </li>
+          
+          <li>
+            <a href="#" class="wui-side-menu-item">
+              <i class="box-ico fa fa-list-alt fa-fw"></i>
+              
+            </a>
+          </li>
+          <li>
+            <a href="#" class="wui-side-menu-item">
+              <i class="box-ico fa fa-search fa-fw"></i>
+              
+            </a>
+          </li>
+          
+          <li>
+            <a href="#" class="wui-side-menu-item">
+              <i class="box-ico fa fa-cog fa-fw"></i>
+              
+            </a>
+          </li>
+        </ul>
+        
+      </div>
+      
+        <header>
+            <button class="button"> Save & Apply</button>
+    <input type="button" class="button" value="Cancel">
+         
+       <br>
+      <br>
+      <div class="line" style="height: 1px;"></div>
+    </header>
+    <br>
+   <div class="scrollbar">
+    <div class="scrollbar-header">
+  
+    
+    <i class="box-ico fa fa-book fa-fw"></i><span> widget box</span>
+    </i>
+    <br>
+    <div class="line" style="height: 1px;"></div>
+    
+    
+    <div  class="gauge" draggable="true" onclick="showContent1()"> 
+
+      <div class="container" id="draggable-one" >
+      
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+            <div class="metric participation" data-ratio=".95">
+              <svg viewBox="0 0 1000 500">
+                  <path d="M 950 500 A 450 450 0 0 0 50 500"></path>
+                  <text class='percentage' text-anchor="middle" alignment-baseline="middle" x="500" y="300" font-size="140" font-weight="bold">0%</text>
+                  <text class='title' text-anchor="middle" alignment-baseline="middle" x="500" y="450" font-size="90" font-weight="normal">Gauge</text>
+                </svg>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="draggable-two" class = "gauge" draggable="true" onclick="showContent2()">
+    <div class="container">
+    <center>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider-pos round"></span>
+        <h5>Off /On </h5>
+      </label>
+
+    </center>
+    </div>
+  </div>
+    <br>
+    <br>
+
+	
+       
+
+
+  </div>
+
+  <div class="border"> DEVICE NAME :</div>
+<div class="box" >
+   
+  
+
+    {% for x in device_gauge %}
+    
+    <div class="droptarget" id="box-data" >
+      <div class="container" >
+        <i class="fa fa-cog" aria-hidden="true" style="color: black; float: right; margin-top:15px;" onclick="settingsformgauge('{{x.gauge_id}}')"></i>
+        <i style="font-size:15px;float: right;margin-top:15px;" class="fa">&#xf014;</i>  
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+              
+              <div class="metric participation" data-ratio=".95" style="margin-top: -15%;">
+                <svg viewBox="0 0 1000 500">
+                    <path d="M 950 500 A 450 450 0 0 0 50 500"></path>
+                    <text class='percentage' text-anchor="middle" alignment-baseline="middle" x="500" y="300" font-size="140" font-weight="bold">0%</text>
+                    <text class='title' text-anchor="middle" alignment-baseline="middle" x="500" y="450" font-size="90" font-weight="normal">Gauge</text>
+                  </svg>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+
+      {% endfor %} 
+ 
+  
+  <div class="droptarget" id="box-data1" ></div>
+  <div class="droptarget" id="box-data2" ></div>
+    </div>
+ 
+</div>
+
+<template>
+  <div class="droptarget" >
+    <div class="container" id="draggable-one" >
+      <i class="fa fa-cog" aria-hidden="true" style="color: black; float: right; margin-top:15px;" onclick="settingsformgauge('None')"></i>
+      <i style="font-size:15px;float: right;margin-top:15px;" class="fa">&#xf014;</i>  
+      <div class="row">
+          <div class="col-md-4 col-sm-4">
+            
+            <div class="metric participation" data-ratio=".95" style="margin-top: -15%;">
+              <svg viewBox="0 0 1000 500">
+                  <path d="M 950 500 A 450 450 0 0 0 50 500"></path>
+                  <text class='percentage' text-anchor="middle" alignment-baseline="middle" x="500" y="300" font-size="140" font-weight="bold">0%</text>
+                  <text class='title' text-anchor="middle" alignment-baseline="middle" x="500" y="450" font-size="90" font-weight="normal">Gauge</text>
+                </svg>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</template>
+<template>
+    <div class="container">
+        <center>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+            
+          </label>
+    
+        </center>
+    </div>
+</template>
+
+<div class="popup" id="popup_id">
+  
+  
+  <form method='POST' > 
+      {% csrf_token %}
+       
+     <h2>Gauge Settings</h2> 
+      
+      <label for="title">Title</label>
+      <input type="text" name="title" > <br><br>
+
+      <label for="datastream" >DATA STREAM:</label>
+      <select name="datastream" value="">
+        <option value="Integer V0 (v0)">Integer V0 (v0)</option>
+        <option value="Integer V1 (v1)">Integer V1 (v1)</option>
+      </select><br><br>
+
+      <label for="min">MIN VALUE :</label>
+      <input type="number" name="min" > <br><br>
+
+      <label for="max">MAX VALUE:</label>
+      <input type="number" name="max" > <br><br>
+
+      <input type="submit" value="SAVE" formaction="{% url 'insert_dashboard' %}"> <br><br>
+ 
+      <button id="close-btn" onclick="settingsformgauge('None')">&times;</button><br>
+
+
+
+      
+      
+  </form>
+</div>
+
+
+   
+<script>
+  function insert_dashboard($this){
+    //document.write({'min':1,'max':100 })
+    
+    var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','min':1,"max":100,"type":'Gauge'};
+    
+    $.post({
+              
+              url:'insert_dashboard/',
+              data:datas
+
+    });
+    
+   
+    
+   
+  }
+  function showContent1() {
+
+  //insert_dashboard(this);
+
+  var temp = document.getElementsByTagName("template")[0];
+ 
+  var clon = temp.content.cloneNode(true);
+  
+  document.getElementById('box-data').appendChild(clon);
+  }
+
+  function showContent2() {     
+
+var temp = document.getElementsByTagName("template")[1];
+
+var clon = temp.content.cloneNode(true);
+document.getElementById('box-data').appendChild(clon);
+
+}
+function settingsformgauge(x) {
+              
+                var blur=document.getElementById('blur');
+                blur.classList.toggle('active');
+
+
+                var popup = document.getElementById('popup_id');
+                popup.classList.toggle('active');
+
+                
+            }
+
+
+</script>
+
+</body>
+</html>
+

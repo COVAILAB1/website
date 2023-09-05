@@ -1,0 +1,88 @@
+In Django, you can create a new table automatically when new data is added to your database by using Django's built-in signal handlers.
+
+Here are the steps to create a new table automatically when new data is added:
+
+1. Create a new Django app in your project, let's call it "myapp".
+
+
+python manage.py startapp myapp
+
+
+2. Inside the "myapp" app, create a new file called "signals.py".
+
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from myapp.models import MyModel, MyNewTable
+
+@receiver(post_save, sender=MyModel)
+def create_new_table(sender, instance, created, **kwargs):
+    if created:
+        # If a new instance of MyModel is created, create a new table for it
+        table_name = f"my_new_table_{instance.id}"
+        MyNewTable.objects.create(name=instance.name, table_name=table_name)
+
+
+3. In the code above, replace "MyModel" with the name of the model that you want to listen for new data additions to.
+
+4. In the "models.py" file of your app, define a new model that represents the new table.
+
+
+from django.db import models
+
+class MyNewTable(models.Model):
+    name = models.CharField(max_length=255)
+    table_name = models.CharField(max_length=255)
+
+
+5. In the "apps.py" file of your app, import the "signals.py" file and connect the signal handler to the post_save signal.
+
+
+from django.apps import AppConfig
+
+class MyAppConfig(AppConfig):
+    name = 'myapp'
+
+    def ready(self):
+        import myapp.signals
+
+
+6. In the "settings.py" file of your project, add the "myapp" app to the INSTALLED_APPS list.
+
+
+INSTALLED_APPS = [
+    # ...
+    'myapp',
+    # ...
+]
+
+
+7. Run the following command to create the initial migration for your new model.
+
+
+python manage.py makemigrations myapp
+
+
+8. Run the following command to apply the migration to your database.
+
+
+python manage.py migrate
+
+
+That's it! Now, whenever new data is added to the MyModel model, a new table will be automatically created for it in the MyNewTable model.
+
+
+
+ def create_dynamic_model_gauge(table_name):
+            fields = {
+                'common_field_1': models.DateTimeField(auto_now=True),
+                'common_field_2': models.IntegerField(),
+            }
+
+            Meta = type('Meta', (object,), {'db_table': table_name})
+
+            attrs = {'__module__': __name__, 'Meta': Meta, **fields}
+
+            model = type(table_name, (BaseTable_gauge,), attrs)
+
+            return model

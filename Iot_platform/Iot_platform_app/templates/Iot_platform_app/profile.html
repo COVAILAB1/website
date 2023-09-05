@@ -1,0 +1,381 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Profile</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static '/css/style4.css'%}">
+        
+        <link rel="stylesheet" href="{% static '/css/user_edit_profile.css'%}">
+        <link rel="stylesheet" href="{% static '/css/graph.css'%}">
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="https://www.cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+        <script src="https://kit.fontawesome.com/6351251fd9.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+        
+        <script>
+
+            
+            jQuery(function ($) {
+                $(".box").click(function() {
+                    var currentActive = $(this).hasClass("active");
+                    $(".boxContent").removeClass("show-content");
+                    $(".box").removeClass("active");
+                    if (!currentActive){
+                    $(this).addClass("active");
+                    var target = $(this).attr("target");
+                    $(".boxContent_" + target).addClass("show-content");
+                    }
+                });
+           });
+             
+           function toggle() {
+                var blur=document.getElementById('blur');
+                blur.classList.toggle('active');
+                var popup = document.getElementById('popup_id');
+                popup.classList.toggle('active');
+            }
+
+                    $(window).resize(function() {
+                    window.lineChart.redraw();
+                    
+                    });
+                    
+
+
+                    function lineChart() {
+                    window.lineChart = Morris.Line({
+                    element: 'line-chart',
+                    data: [
+                        { y: '2006', a: 0 },
+                        { y: '2007', a: 75},
+                        { y: '2008', a: 50},
+                        { y: '2009', a: 0},
+                        { y: '2010', a: 50},
+                        { y: '2011', a: 75},
+                        { y: '2012', a: 100 }
+                    ],
+                    xkey: 'y',
+                    ykeys: ['a'],
+                    
+                    lineColors: ['#1e88e5','#ff3321'],
+                    lineWidth: '3px',
+                    resize: true,
+                    redraw: true
+                    });
+                    }
+            function Onchangeduration(id_val){
+                
+                var duration = $('#durations').val();
+                duration_detail={csrfmiddlewaretoken: '{{ csrf_token }}','duration':$('#durations').val(),'id_val':id_val};
+                $.ajax({
+                    url:'graph/',
+                    type:'POST',
+                    data:duration_detail
+
+                });
+
+            }                                               
+
+        </script>
+           <script>
+            $.noConflict();
+        
+        jQuery(document).ready(function($) {
+        
+            "use strict";
+        
+            [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+                new SelectFx(el);
+            });
+        
+            jQuery('.selectpicker').selectpicker;
+        
+        
+            
+        
+            $('.search-trigger').on('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $('.search-trigger').parent('.header-left').addClass('open');
+            });
+        
+            $('.search-close').on('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $('.search-trigger').parent('.header-left').removeClass('open');
+            });
+        
+            $('.equal-height').matchHeight({
+                property: 'max-height'
+            });
+        
+            // var chartsheight = $('.flotRealtime2').height();
+            // $('.traffic-chart').css('height', chartsheight-122);
+        
+        
+            // Counter Number
+            $('.count').each(function () {
+                $(this).prop('Counter',0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 3000,
+                    easing: 'swing',
+                    step: function (now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+            });
+        
+        
+             
+             
+            // Menu Trigger
+            $('#menuToggle').on('click', function(event) {
+                var windowWidth = $(window).width();         
+                if (windowWidth<1010) { 
+                    $('body').removeClass('open'); 
+                    if (windowWidth<760){ 
+                        $('#left-panel').slideToggle(); 
+                    } else {
+                        $('#left-panel').toggleClass('open-menu');  
+                    } 
+                } else {
+                    $('body').toggleClass('open');
+                    $('#left-panel').removeClass('open-menu');  
+                } 
+                     
+            }); 
+        
+             
+            $(".menu-item-has-children.dropdown").each(function() {
+                $(this).on('click', function() {
+                    var $temp_text = $(this).children('.dropdown-toggle').html();
+                    $(this).children('.sub-menu').prepend('<li class="subtitle">' + $temp_text + '</li>'); 
+                });
+            });
+        
+        
+            // Load Resize 
+            $(window).on("load resize", function(event) { 
+                var windowWidth = $(window).width();         
+                if (windowWidth<1010) {
+                    $('body').addClass('small-device'); 
+                } else {
+                    $('body').removeClass('small-device');  
+                } 
+                
+            });
+          
+         
+        });
+        </script>
+    </head>
+    <body style="background-color: white;">
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    
+
+                    <li>
+                    <a href="{% url 'dashboard' %}"  ><i class="menu-icon fa fa-automobile"></i>My Device</a></li>
+                    <li >
+                        <a href="{% url 'profile_page' %}" > <i class="menu-icon fa fa-user-plus"></i>Profile</a>
+                        
+                        
+                    </li>
+                    <li>
+                        <a href="{% url 'analytics' %}"><i class="menu-icon fa fa-bar-chart"></i>Analytics</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout' %}"><i class="menu-icon fa fa-sign-out" > </i>Logout</a>
+                        </li>
+
+
+                    
+
+                    
+                    
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside>
+       
+
+    <div id="right-panel" class="right-panel">
+        <header id="header" class="header">
+            <div class="top-left">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href=""><img src="{% static '/image/logo1.png'%}" alt="Logo"></a>
+                   
+                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                </div>
+            </div>
+           
+        <center><div class="head">USER-PROFILE</div></center>
+        <button formaction="{% url 'edit_profile' %}" type="submit"  form="form1">save changes</button>
+        </header>
+        <br><br><br><br>
+        <div style="margin-top:5%;">
+            {% include 'Iot_platform_app/message.html' %}
+          </div>
+    <div class="data_container" id="blur"> 
+
+        <div class="container" id="profile">
+            
+           <form method="POST" id="form1">
+            {% csrf_token %}
+            <div class="basic" style="display: flex;gap: 10px;"><h3>Basic Details</h3></div>
+            <div class=" basic_datas">
+            <div class = "datas">
+            <div class="row">
+                
+                <div class="column1">
+                    <label for="NAME"> First Name:</label> <br><br>
+                    <input type="text" name="NAME" value={{datas.names}}> <br><br>
+                    
+                    </div>
+                    <div class="column1">
+                        <label for="l_name"> Last Name:</label> <br><br>
+                        <input type="text" name="l_name" value={{datas.last_name}}></i>
+                        </div>
+                </div>
+            
+            <div class="row1">
+                <div class="column2">
+                    <label for="birthdate">Date of Birth:</label><br><br>
+                    <input type="date" name="birthdate" id="dob" name="birthday"  value="{{datas.dob|date:'Y-m-d'}}">
+                </div>
+                
+                <div class="column2">
+
+                    <label for="email"> Email ID</label> <br><br>
+                    <input type="email" name="email" readonly value={{datas.emailId}}> 
+                    </div>
+                    <div class="column2">
+                        <label for="mobile"> Phone Number:</label><br><br>
+                        <input type="tel" name="mobile" value={{datas.contact_number}}> 
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="add" style="display: flex;gap: 10px;"><h3>Address</h3> </div>
+            <div class="address_data">
+            <div class = "datas">
+           
+            <div class="row2">
+                
+                    <div class="column3">
+                        <label for="streetname">Street Name</label> <br><br>
+                        <input type="text" name="streetname" id="streetname" value={{datas.street_name}}>
+                        </div>
+            </div>
+           
+           
+
+        
+        
+            <div class="row3">
+                <div class="column4" >
+                    
+                        <label for="city"> City:</label><br><br>
+                        <input type="text" name="city" value={{datas.city}}>
+                       
+                </div>
+                <div class="column4" >
+                    
+                    <label for="state"> state</label><br><br>
+                    <input type="text" name="state" value={{datas.state}}>
+                   
+             </div>
+            
+            <div class="column4" for="pincode">
+                    
+                <label for="Pincode"> Pincode</label><br><br>
+                <input type="text" name="Pincode" value={{datas.pincode}}>
+               
+            </div>
+            <div class="column4">
+                    
+                <label for="country"> Country</label><br><br>
+                <input type="text" name="country" value={{datas.country}}>
+               
+             </div>
+            </div>
+        </div>
+        </div>
+        <div class="institute" style="display: flex;gap: 10px;"><h3>Institution</h3></div>
+        <div class="institute_datas">
+           
+        <div class="datas">
+            
+            <div class="row4">
+                
+                <div class="column5">
+                    <label for="Institutename">Institution Name</label> <br><br>
+                    <input type="text" name="Institutename" value={{datas.Institute_name}}>
+                    </div>
+                <div class="column5">
+                    <label for="dept">Department</label> <br><br>
+                    <input type="text" name="dept" value={{datas.department}}> 
+                </div>
+            </div>
+            </div>
+        </div>
+
+        
+    </form>
+        </div>
+
+        
+        </div>
+            
+
+    </div>
+                                            
+
+        <div class="popup" id="popup_id">
+            <h3>USER PROFILE</h3> 
+            
+            <form method='POST' > 
+                {% csrf_token %}
+                 
+                
+                <label for="NAME">NAME :</label>
+                <input type="text" name="NAME" value={{datas.names}}> <br><br>
+
+                <label for="mobile">MOBILE NUMBER :</label>
+                <input type="tel" name="mobile" value={{datas.contact_number}}> <br><br>
+
+                <label for="email">EMAIL ID:</label>
+                <input type="email" name="email" readonly value={{datas.emailId}}> <br><br>
+
+                <label for="country">COUNTRY NAME:</label>
+                <input type="text" name="country"> <br><br>
+
+                <button id="close-btn" onclick="toggle()">&times;</button><br>
+
+          
+
+                
+                <input type="submit" value="SAVE" formaction="{% url 'edit_profile' %}"> <br><br>
+            </form>
+        </div>
+        
+       
+    </div>
+        
+    </body>
+</html>

@@ -1,0 +1,61 @@
+
+<head>
+    <style>
+        .alert-success{
+            margin-top: 2%;
+            background:#d4eeda;
+            color:#557d5d;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            width:98%;
+            height:15%;
+            text-align: 50px;
+            padding-left:20px;
+            padding-top:15px;
+            padding-bottom:15px;
+        }
+        .alert-error{
+            margin-top: 2%;
+            background:#f8d8da;
+            color:#b48b91;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            width:98%;
+            height:15%;
+            text-align: 50px;
+            padding-left:20px;
+            padding-top:15px;
+            padding-bottom:15px;
+        }
+       
+        .closebtn{
+            float: right;
+            margin-right: 2%;
+            color: #557d5d;
+            font-weight: 100;
+        }
+        
+    </style>
+</head>
+<body>
+{% if messages %} 
+ {% for message in messages %} 
+	<div class="alert-{{message.tags}}" id="msg" role="alert">
+      
+	    {{message}}
+        <span class="closebtn">&times;</span> 
+        
+			
+    </div>	
+   {% endfor %}
+{% endif %}
+<script>
+    var close = document.getElementsByClassName("closebtn");
+    var i;
+    
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function(){
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+      }
+    }
+</script>

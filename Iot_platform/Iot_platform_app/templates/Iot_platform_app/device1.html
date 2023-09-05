@@ -1,0 +1,855 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>krishtec</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static '/css/edit_device_page.css' %}">
+    <link rel="stylesheet" href="{% static '/css/switch.css' %}">
+    <link rel="stylesheet" href="{% static '/css/switch1.css' %}">
+ 
+    <link rel="stylesheet" href="{% static '/css/style3.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+ 
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+     <script>
+        $.noConflict();
+    
+    jQuery(document).ready(function($) {
+    
+        "use strict";
+    
+        [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+            new SelectFx(el);
+        });
+    
+        jQuery('.selectpicker').selectpicker;
+    
+    
+        
+    
+        $('.search-trigger').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $('.search-trigger').parent('.header-left').addClass('open');
+        });
+    
+        $('.search-close').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $('.search-trigger').parent('.header-left').removeClass('open');
+        });
+    
+        $('.equal-height').matchHeight({
+            property: 'max-height'
+        });
+    
+        // var chartsheight = $('.flotRealtime2').height();
+        // $('.traffic-chart').css('height', chartsheight-122);
+    
+    
+        // Counter Number
+        $('.count').each(function () {
+            $(this).prop('Counter',0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 3000,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
+    
+    
+          
+          
+        // Menu Trigger
+        $('#menuToggle').on('click', function(event) {
+            var windowWidth = $(window).width();         
+            if (windowWidth<1010) { 
+                $('body').removeClass('open'); 
+                if (windowWidth<760){ 
+                    $('#left-panel').slideToggle(); 
+                } else {
+                    $('#left-panel').toggleClass('open-menu');  
+                } 
+            } else {
+                $('body').toggleClass('open');
+               $('#left-panel').removeClass('open-menu');  
+            } 
+                  
+        }); 
+    
+          
+        $(".menu-item-has-children.dropdown").each(function() {
+            $(this).on('click', function() {
+                var $temp_text = $(this).children('.dropdown-toggle').html();
+                $(this).children('.sub-menu').prepend('<li class="subtitle">' + $temp_text + '</li>'); 
+            });
+        });
+    
+    
+        //Load Resize 
+        $(window).on("load resize", function(event) { 
+            var windowWidth = $(window).width();         
+            if (windowWidth<1010) {
+                $('body').addClass('small-device'); 
+            } else {
+                $('body').removeClass('small-device');  
+            } 
+            
+        });
+      
+      
+    });
+    </script>
+</head>
+<body>
+     
+  <aside id="left-panel" class="left-panel" >
+    <nav class="navbar navbar-expand-sm navbar-default">
+      {% if device_list_cout >= 4 %}
+     
+        <div id="main-menu" class="main-menu collapse navbar-collapse" >
+            <ul class="nav navbar-nav">
+               
+
+            <li>
+              <img src="{% static '/image/3.png'%}"  style="width:97%;height:25vh; padding: 20px;" >
+                <li >
+                  <img src="{% static '/image/1.png'%}"  style="width:97%;height:25vh;padding: 25px;"><br>
+
+                </li>
+                <li>
+                  <img src="{% static '/image/2.png'%}"  style="width:97%;height:35vh;padding: 25px;"><br>
+                  
+                </li>
+                <li>
+                  <img src="{% static '/image/4.png'%}" style="width:107%;height:20vh;padding: 25px;"  >
+                </li>
+                
+            </ul>
+        </div><!-- /.navbar-collapse -->
+        
+      {% else %}
+      <div id="main-menu" class="main-menu collapse navbar-collapse" >
+        <ul class="nav navbar-nav">
+           
+
+        <li>
+          <img src="{% static '/image/3.png'%}" onclick="showContent1()" style="width:97%;height:25vh; padding: 20px;">
+            <li >
+              <img src="{% static '/image/1.png'%}" onclick="showContent2()" style="width:97%;height:25vh;padding: 25px;"><br>
+
+            </li>
+            <li>
+              <img src="{% static '/image/2.png'%}" onclick="showContent3()" style="width:97%;height:25vh;padding: 25px;"><br>
+              
+            </li>
+            <li>
+              <img src="{% static '/image/4.png'%}" style="width:97%;height:25vh;padding: 25px;" onclick="showContent4()">
+            </li>
+            
+        </ul>
+    </div>
+      {% endif %}
+    </nav>
+</aside>
+<div id="right-panel" class="right-panel">
+
+  <!-- Header-->
+  <header id="header" class="header">
+      <div class="top-left">
+          <div class="navbar-header">
+              <a class="navbar-brand" href=""><img src="{% static '/image/logo1.png'%}" alt="Logo"></a>
+             
+              <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+          </div>
+      </div>
+     
+  <div class="head"> <center>{{device_name}}</center>
+   
+    <a href="{% url 'device_page' devicename=device_name %}" ><button class="button" > Apply</button></a></div>
+    
+  
+
+  </header>
+  <br><br><br><br>
+      <div class="data_container" id="blur">  
+      <div id="wrapper">
+            <!-- Sidebar -->
+          
+            
+            <!-- /#sidebar-wrapper -->
+      
+            <!-- Page Content -->
+  <div id="page-content-wrapper" >
+      <div class="scrollbar"id="style-1">
+        
+          <div class="force-overflow">          
+      <div class="grid-container" id = "box-data">
+        
+
+          
+        {% for x in device_gauge %}
+        
+        <div class="droptarget" id ={{x.gauge_id}} >
+          
+          <div class="container" >
+            <h5 style="margin-top:-5%;color:black;font-size:17px;" >{{x.Title}}</h5>
+            <i class="fa fa-cog" aria-hidden="true" style="color: black; float: right; font-size: 15px;margin-top:5%" onclick="settingsformgauge('{{x.gauge_id}}')"></i>
+            <i style="font-size:15px;float: right;margin-top:5%;margin-right:2%" class="fa"  onclick="delete_data('{{x.gauge_id}}','gauge')">&#xf014;</i>  
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                  
+                  <div class="metric participation" data-ratio=".95" style="margin-top: -12%;">
+                    <svg viewBox="0 0 1000 500">
+                        <path d="M 950 500 A 450 450 0 0 0 50 500"></path>
+                        <text class='percentage' text-anchor="middle" alignment-baseline="middle" x="500" y="300" font-size="140" font-weight="bold">0%</text>
+                        <text class='title' text-anchor="middle" alignment-baseline="middle" x="500" y="450" font-size="90" font-weight="normal">Gauge</text>
+                      </svg>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+    
+          {% endfor %} 
+          
+
+          {% for s in device_Toggle %}
+         
+          <div class="droptarget" id ={{s.toggle_switch_id}}>
+            <div class="container">
+              <h5 style="margin-top:-5%;color:black;font-size:17px;">{{s.Title}}</h5>
+                <i class="fa fa-cog" aria-hidden="true" style="color: black; float: right; font-size: 15px;margin-top: -2%;" onclick="settingsformtoggle('{{s.toggle_switch_id }}')"></i>
+                <i style="font-size:15px;float:right;margin-right:6%; margin-top: -2%;" class="fa" onclick="delete_data('{{s.toggle_switch_id }}','toggle')">&#xf014;</i>  
+                <center>
+                  
+                  <label class="switch"  style="margin-top:25%;margin-left: 15%;">
+                    <input type="checkbox" style="text-align: center;">
+                    <span class="slider round"></span>
+                    <!-- <h5>Off /On </h5> -->
+                  </label>
+            
+                </center>
+            </div>
+        </div>
+         
+          {% endfor %}
+ 
+          {% for l in device_label %}
+          
+          <div class="droptarget" id ={{l.label_id}} >
+            <div class="container">
+              <h5 style="margin-top:-5%;color:black;font-size:17px;">{{l.Title}}</h5>
+                <i class="fa fa-cog" aria-hidden="true" style="color: black; float: right; font-size: 15px;margin-top: -3%;" onclick="settingsformlabel('{{l.label_id}}')"></i>
+                <i style="font-size:15px;float:right;margin-right:6%; margin-top: -3%;" class="fa" onclick="delete_data('{{l.label_id}}','label')">&#xf014;</i>  
+                <div class="col-xl-3 mb-50" style="margin-top: 10%;">
+              <div class="bg-white widget-style1 border-radius-10 height-200-p box-shadow" >
+                <div class="d-flex flex-wrap align-items-center">
+                  
+                  </div>
+                  <div class="widget-data">
+                    
+                    <div class="weight-500" id="data-content">Label</div>
+                  </div>
+                  
+                </div>
+              </div>
+          </div>
+          </div>
+          {% endfor %}
+
+          {% for switch in device_switch %}
+          <div class="droptarget" >
+            <div class="container">
+              <h5 style="margin-top:-5%;color:black;font-size:17px;"> {{ switch.Title }} </h5>
+              <i class="fa fa-cog" aria-hidden="true" style="color: black; float: right; font-size: 15px;margin-top: -2%;" onclick="settingsformswitch('{{switch.electric_switch_id}}')"></i>
+              <i style="font-size:15px;float:right;margin-right:6%; margin-top: -2%;" class="fa" onclick="delete_data('{{switch.electric_switch_id}}','switch')">&#xf014;</i>  
+
+              <input  type="checkbox" id="light-switch{{forloop.counter0}}" />
+              <label for="light-switch{{forloop.counter0}}" id="light-switch-label{{forloop.counter0}}" style="margin-top:30px;">
+              
+               <div class="switch{{forloop.counter0}}"></div>
+              
+            </label>
+            </div>
+          </div>
+
+          {% endfor %}
+
+        </div>
+       
+        </div>
+      
+            </div>
+            
+            <!-- /#page-content-wrapper -->
+      
+        </div>
+       
+
+    </div>
+    </div>
+</div>
+        <div class="popup" id="popup_id">
+  
+          <h2>Gauge Settings</h2> 
+            <form method='POST' class="gauge" > 
+                {% csrf_token %}
+                 
+               
+                
+                <label for="title">Title : </label>
+                <input type="text" name="title" id="gauge_title" > <br><br>
+          
+                
+          
+                <label for="min">MIN VALUE :</label>
+                <input type="number" name="min" id="gauge_min"> <br><br>
+          
+                <label for="max">MAX VALUE:</label>
+                <input type="number" name="max" id="gauge_max"> <br><br>
+          
+                <button class="gauge_button" onclick="save_data(document.getElementsByClassName('gauge').id,'gauge')">SAVE</button> <br><br>
+          
+                <button id="close-btn" onclick="settingsformgauge('None')">&times;</button><br>
+          
+          
+          
+                
+                
+            </form>
+        </div>
+
+        <div class="popup1" id="popup_id1">
+  
+          <h2>Toggle switch Settings</h2> 
+
+            <form method='POST' class="toggle"> 
+                {% csrf_token %}
+                 
+              
+                
+                <label for="title">Title : </label>
+                <input type="text" name="title" id="toggle_title"> <br><br>
+          
+                
+          
+                <label for="on">ON VALUE :</label>
+                <input type="number" name="on" id="toggle_on"> <br><br>
+          
+                <label for="off">OFF VALUE:</label>
+                <input type="number" name="off" id="toggle_off"> <br><br>
+          
+                <button  class="toggle_button" onclick="save_data(document.getElementsByClassName('toggle').id,'toggle')">SAVE</button><br><br>
+          
+                <button id="close-btn-toggle" onclick="settingsformtoggle('None')">&times;</button><br>
+          
+          
+          
+                
+                
+            </form>
+        </div>
+
+        
+        <div class="popup2" id="popup_id2">
+  
+          <h2>Label Settings</h2> 
+          <form method='POST' class="Label_data"> 
+              {% csrf_token %}
+               
+             
+              
+              <label for="title">Title :</label>
+              <input type="text" name="title" id="label_title"> <br><br>  
+        
+              <button class="label_button" onclick="save_data(document.getElementsByClassName('Label_data').id,'Label')">SAVE</button> <br><br>
+        
+              <button id="close-btn-label" onclick="settingsformlabel('None')">&times;</button><br>
+        
+        
+        
+              
+              
+          </form>
+      </div>
+      <div class="popup3" id="popup_id3">
+  
+        <h2>Switch Settings</h2> 
+        <form method='POST' class="switch_data"> 
+            {% csrf_token %}
+             
+           
+            
+            <label for="title">Title :</label>
+            <input type="text" name="title" id="switch_title"> <br><br>  
+
+            <label for="on">ON VALUE :</label>
+            <input type="number" name="on" id="switch_on"> <br><br>
+      
+            <label for="off">OFF VALUE:</label>
+            <input type="number" name="off" id="switch_off"> <br><br>
+      
+            <button class="switch_button" onclick="save_data(document.getElementsByClassName('switch_data').id,'switch')">SAVE</button> <br><br>
+      
+            <button id="close-btn-switch" onclick="settingsformswitch('None')">&times;</button><br>
+      
+      
+      
+            
+            
+        </form>
+    </div>
+
+        <template>
+            <div class="droptarget" >
+              <h5 style="margin-top:-5%;color:black;font-size:17px;">Gauge</h5>
+              <div class="container" style="margin-top:-10%;">
+                <i class="fa fa-cog" aria-hidden="true" style="color: black; float: right; font-size: 15px;margin-top: 5%;" onclick="settingsformgauge('None')"></i>
+                <i style="font-size:15px;float: right;margin-top: 5%;margin-right:2%" class="fa" onclick="deleteElement(this)">&#xf014;</i>  
+                <div class="row">
+                    
+                    <div class="col-md-4 col-sm-4">
+                      
+                      <div class="metric participation" data-ratio=".95" style="margin-top: -12%;">
+                        <svg viewBox="0 0 1000 500">
+                            <path d="M 950 500 A 450 450 0 0 0 50 500"></path>
+                            <text class='percentage' text-anchor="middle" alignment-baseline="middle" x="500" y="300" font-size="140" font-weight="bold">0%</text>
+                            <text class='title' text-anchor="middle" alignment-baseline="middle" x="500" y="450" font-size="90" font-weight="normal">Gauge</text>
+                          </svg>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+              
+              
+          </template>
+          <template>
+            <div class="droptarget">
+            <div class="container">
+              <h5 style="margin-top:-5%;color:black;font-size:17px;">Toggle Switch</h5>
+                <i class="fa fa-cog" aria-hidden="true" style="color: black; float: right; font-size: 15px;margin-top: -2%;" onclick="settingsformtoggle('None')"></i>
+                <i style="font-size:15px;float:right;margin-right:6%; margin-top: -2%;" class="fa" onclick="deleteElement(this)">&#xf014;</i>  
+                
+                <center>
+                  
+                  <label class="switch" style="margin-top:25%;margin-left: 15%;">
+                    
+                    <input type="checkbox" style="text-align: center;">
+                    <span class="slider round"></span>
+                    <!-- <h5>Off /On </h5> -->
+                  </label>
+            
+                </center>
+            </div>
+        </div>
+        </template>
+        <template>
+            <div class="droptarget"  >
+              <div class="container">
+                <h5 style="margin-top:-5%;color:black;font-size:17px;">Label</h5>
+                  <i class="fa fa-cog" aria-hidden="true" style="color: black; float: right; font-size: 15px;margin-top: -3%;" onclick="settingsformlabel('None')"></i>
+                  <i style="font-size:15px;float:right;margin-right:6%; margin-top: -3%;" class="fa" onclick="deleteElement(this)">&#xf014;</i>  
+                  <div class="col-xl-3 mb-50" style="margin-top: 10%;">
+                <div class="bg-white widget-style1 border-radius-10 height-200-p box-shadow">
+                  <div class="d-flex flex-wrap align-items-center">
+                    
+                    </div>
+                    <div class="widget-data">
+                      
+                      <div class="weight-500">Label</div>
+                    </div>
+                    
+                  </div>
+                </div>
+            </div>
+            </div>
+        </template>
+        <template>
+            <div class="droptarget" >
+            <div style="width:40px; height: 40px;">
+            <label class="rocker">
+                <input type="checkbox" checked>
+                <span class="switch-left">OFF</span>
+                <span class="switch-right">ON</span>
+              </label>
+            </div>
+            </div>
+        </template>
+        <template>
+          <div class="droptarget" >
+            <div class="container">
+              <h5 style="margin-top:-5%;color:black;font-size:17px;"> Switch </h5>
+              <i class="fa fa-cog" aria-hidden="true" style="color: black; float: right; font-size: 15px;margin-top: -2%;" onclick="settingsformswitch('None')"></i>
+              <i style="font-size:15px;float:right;margin-right:6%; margin-top: -2%;" class="fa" onclick="deleteElement(this)">&#xf014;</i>  
+
+              <input type="checkbox" id="light-switch"/>
+              <label for="light-switch" id="light-switch-label" style="margin-top:30px;" >
+              
+               <div class="switch"></div>
+              
+            </label>
+            </div>
+          </div>
+        </template>
+<script>
+  
+        //switch_css('{{switch.electric_switch_id}}','light-{{switch.electric_switch_id}}');
+ 
+</script>
+<script>
+var count_data = '{{device_list_cout}}'
+function deleteElement(element) {
+  if (count_data>=4){
+    count_data--;
+  }
+    
+    var parentElement = element.parentNode.parentNode;
+    parentElement.remove(element.parentNode);
+  }
+  function delete_data(id_val,type){
+    
+    var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','id_val':id_val,"type":type,"device_name":'{{device_name}}'};
+        $.post({
+              
+              url:'delete_dashboard/',
+              data:datas
+    });
+    location.reload(true);
+
+  }
+  function save_data(id_val,type){
+    
+    if (id_val == 'None'){
+     
+      if  (type == 'gauge'){
+        
+        var title = document.getElementById('gauge_title').value;
+        
+        var min_val = document.getElementById('gauge_min').value;
+      
+        var max_val = document.getElementById('gauge_max').value;
+        
+        var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','id_val':id_val,"type":type,"title":title,'min_val':min_val,'max_val':max_val,'device_name':'{{device_name}}'};
+        
+        $.post({
+              
+              url:'insert_dashboard/',
+              data:datas
+
+    });
+    
+  }
+    else if  (type == 'toggle'){
+
+        var title = document.getElementById('toggle_title').value;
+        
+        var on_val = document.getElementById('toggle_on').value;
+        var off_val = document.getElementById('toggle_off').value;
+        var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','id_val':id_val,"type":type,"title":title,'on_val':on_val,'off_val':off_val,'device_name':'{{device_name}}'};
+        $.post({
+              
+              url:'insert_dashboard/',
+              data:datas
+    });
+
+
+
+      }
+      
+    else if  (type == 'switch'){
+
+        var title = document.getElementById('switch_title').value;
+        
+        var on_val = document.getElementById('switch_on').value;
+        var off_val = document.getElementById('switch_off').value;
+        var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','id_val':id_val,"type":type,"title":title,'on_val':on_val,'off_val':off_val,'device_name':'{{device_name}}'};
+        $.post({
+              
+              url:'insert_dashboard/',
+              data:datas
+    });
+
+    
+
+      }
+    else if (type == 'Label'){
+      
+      var title = document.getElementById('label_title').value;
+      var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','id_val':id_val,"type":type,"title":title,'device_name':'{{device_name}}'};
+        $.post({
+              
+              url:'insert_dashboard/',
+              data:datas
+    });
+    }
+  }
+    else{
+      if  (type == 'gauge'){
+        
+        var title = document.getElementById('gauge_title').value;
+        
+        var min_val = document.getElementById('gauge_min').value;
+        var max_val = document.getElementById('gauge_max').value;
+        
+        var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','id_val':id_val,"type":type,"title":title,'min_val':min_val,'max_val':max_val,'device_name':'{{device_name}}'};
+        $.post({
+              
+              url:'insert_dashboard/',
+              data:datas
+    });
+  }
+    else if  (type == 'toggle'){
+        
+        var title = document.getElementById('toggle_title').value;
+        
+        var on_val = document.getElementById('toggle_on').value;
+        var off_val = document.getElementById('toggle_off').value;
+        var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','id_val':id_val,"type":type,"title":title,'on_val':on_val,'off_val':off_val,'device_name':'{{device_name}}'};
+        $.post({
+              
+              url:'insert_dashboard/',
+              data:datas
+    });
+    }
+  
+    
+    else if  (type == 'switch'){
+
+      var title = document.getElementById('switch_title').value;
+
+      var on_val = document.getElementById('switch_on').value;
+      var off_val = document.getElementById('switch_off').value;
+      var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','id_val':id_val,"type":type,"title":title,'on_val':on_val,'off_val':off_val,'device_name':'{{device_name}}'};
+      $.post({
+            
+            url:'insert_dashboard/',
+            data:datas
+      });
+
+
+
+}
+    else if (type == 'Label'){
+      
+      var title = document.getElementById('label_title').value;
+      var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','id_val':id_val,"type":type,"title":title,'device_name':'{{device_name}}'};
+        $.post({
+              
+              url:'insert_dashboard/',
+              data:datas
+    });
+  }
+
+
+}
+
+   location.reload(true);
+      
+    
+  }
+  function showContent1() {if (count_data <= 4){
+      count_data++; 
+    }
+    if (count_data <= 4){
+        var temp = document.getElementsByTagName("template")[0];
+        var clon = temp.content.cloneNode(true);
+        document.getElementById('box-data').appendChild(clon);
+    }
+  
+  }
+
+  function showContent2() {
+    if (count_data <= 4){
+      count_data++;
+    }
+    if (count_data <= 4){
+        var temp = document.getElementsByTagName("template")[1];
+        var clon = temp.content.cloneNode(true);
+        document.getElementById('box-data').appendChild(clon);
+    }
+  
+  }
+
+  function showContent4() {
+    if (count_data <= 4){
+      count_data++;
+    }
+    if (count_data <= 4){
+        var temp = document.getElementsByTagName("template")[2];
+        var clon = temp.content.cloneNode(true);
+        document.getElementById('box-data').appendChild(clon);
+    }
+  
+  }
+  function showContent3() {
+    if (count_data <= 4){
+      count_data++;
+    }
+    if (count_data <= 4){
+        var temp = document.getElementsByTagName("template")[4];
+        var clon = temp.content.cloneNode(true);
+        document.getElementById('box-data').appendChild(clon);
+    }
+  
+  }
+function settingsformgauge(x) {
+              
+              var blur=document.getElementById('blur');
+              blur.classList.toggle('active');
+
+              document.getElementsByClassName("gauge").id=x;
+
+
+              var popup = document.getElementById('popup_id');
+              popup.classList.toggle('active');
+
+              
+          }
+function settingsformtoggle(x) {
+    
+    var blur=document.getElementById('blur');
+    blur.classList.toggle('active');
+    document.getElementsByClassName("toggle").id=x;
+
+    var popup = document.getElementById('popup_id1');
+    popup.classList.toggle('active');
+
+    
+}
+
+function settingsformlabel(x) {
+    
+    var blur=document.getElementById('blur');
+    blur.classList.toggle('active');
+    document.getElementsByClassName("Label_data").id=x;
+
+    var popup = document.getElementById('popup_id2');
+    popup.classList.toggle('active');
+
+    
+}
+
+
+function settingsformswitch(x) {
+    
+    var blur=document.getElementById('blur');
+    blur.classList.toggle('active');
+    document.getElementsByClassName("switch_data").id=x;
+
+    var popup = document.getElementById('popup_id3');
+    popup.classList.toggle('active');
+
+    
+}
+</script>
+<script>
+function switch_css(switch_Id,switch_label_id){
+  document.write(switch_Id);
+  var css_code = `#${switch_Id} {
+    position:absolute;
+    left:0;
+    top:0;
+    opacity:0;
+    /* &:checked ~ #background {
+      background-color:#ebdbac;
+    } */
+    &:checked ~ #${switch_label_id} {  //
+      box-shadow:0 2px 2px #d0b57b;
+      .switch {
+        box-shadow:0 10px 10px -5px rgba(233,219,176,1), 0 0 0 1px rgba(0,0,0,.1), 0 0 0 4px #fff4d3,0 0 0 5px rgba(0,0,0,.1);
+        &:before {
+          height:75px;
+          top:0px;
+          line-height:75px;
+          background:#fff4d3;
+          color:#64bf60;
+          text-shadow: 0 0 3px #38ff2e;
+        }
+        &:after {
+          height:70px;
+          bottom:5px;
+          line-height:70px;
+          background:#fffaea;
+          box-shadow:0 5px 0 #d0b57b;
+          color:#d7bf95;
+          text-shadow:0 0 0px transparent;
+        }
+      }
+    }
+  }
+  
+  #${switch_label_id} {
+    position:relative;
+    display:block;
+    height:150px;
+    width:100px;
+    z-index:1;
+    margin:100px auto 0 auto;
+    background-color:#fff4d3;
+    border-radius:10px;
+    .switch {
+      cursor:pointer;
+      height:150px;
+      width:95px;
+      background:#fffaea;
+      position:absolute;
+      top:50%;
+      left:50%;
+      margin:-75px 0 0 -50px;
+      border-radius:5px;
+      overflow:hidden;
+      box-shadow:0 10px 10px -5px rgba(233,219,176,1), 0 0 0 1px rgba(0,0,0,.1), 0 0 0 4px #fff4d3,0 0 0 5px rgba(0,0,0,.1);
+      &:before {
+        content:'ON';
+        display:block;
+        position:absolute;
+        height:70px;
+        text-align:center;
+        line-height:70px;
+        width:100px;
+        top:5px;
+        left:0;
+        background:#efe0b1;
+        color:#bfa371;
+        border-radius:5px 5px 0 0;
+      }
+      &:after {
+        content:'OFF';
+        display:block;
+        position:absolute;
+        height:75px;
+        text-align:center;
+        line-height:75px;
+        width:100px;
+        bottom:0;
+        left:0;
+        background:#fff4d3;
+        color:#a4441a;
+        text-shadow: 0 0 3px #ff4e00;
+        border-radius:0 0 5px 5px;
+      }
+    }
+}`;
+}
+
+
+</script>
+</body>
+</html>

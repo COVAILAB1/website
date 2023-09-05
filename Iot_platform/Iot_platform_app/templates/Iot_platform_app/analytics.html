@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Analytics</title>
+        <link rel="stylesheet" href="{% static '/css/style1.css'%}">
+        <link rel="stylesheet" href="{% static '/css/analytic.css'%}">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+        <script src="https://kit.fontawesome.com/6351251fd9.js" crossorigin="anonymous"></script>
+        
+        
+
+        <script>
+            $.noConflict();
+        
+        jQuery(document).ready(function($) {
+        
+            "use strict";
+        
+            [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+                new SelectFx(el);
+            });
+        
+            jQuery('.selectpicker').selectpicker;
+        
+        
+            
+        
+            $('.search-trigger').on('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $('.search-trigger').parent('.header-left').addClass('open');
+            });
+        
+            $('.search-close').on('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $('.search-trigger').parent('.header-left').removeClass('open');
+            });
+        
+            $('.equal-height').matchHeight({
+                property: 'max-height'
+            });
+        
+            // var chartsheight = $('.flotRealtime2').height();
+            // $('.traffic-chart').css('height', chartsheight-122);
+        
+        
+            // Counter Number
+            $('.count').each(function () {
+                $(this).prop('Counter',0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 3000,
+                    easing: 'swing',
+                    step: function (now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+            });
+        
+        
+             
+             
+            // Menu Trigger
+            $('#menuToggle').on('click', function(event) {
+                var windowWidth = $(window).width();         
+                if (windowWidth<1010) { 
+                    $('body').removeClass('open'); 
+                    if (windowWidth<760){ 
+                        $('#left-panel').slideToggle(); 
+                    } else {
+                        $('#left-panel').toggleClass('open-menu');  
+                    } 
+                } else {
+                    $('body').toggleClass('open');
+                    $('#left-panel').removeClass('open-menu');  
+                } 
+                     
+            }); 
+        
+             
+            $(".menu-item-has-children.dropdown").each(function() {
+                $(this).on('click', function() {
+                    var $temp_text = $(this).children('.dropdown-toggle').html();
+                    $(this).children('.sub-menu').prepend('<li class="subtitle">' + $temp_text + '</li>'); 
+                });
+            });
+        
+        
+            // Load Resize 
+            $(window).on("load resize", function(event) { 
+                var windowWidth = $(window).width();         
+                if (windowWidth<1010) {
+                    $('body').addClass('small-device'); 
+                } else {
+                    $('body').removeClass('small-device');  
+                } 
+                
+            });
+          
+         
+        });
+        jQuery(document).ready(function($) {
+            $('.nav-link').click(function(event) {
+               
+                event.preventDefault();
+                var device_name = $(this).data('device');
+                $.ajax({
+                    url: '/load_template/',
+                    type:'POST',
+                    data: {
+                        template_name: "graph.html",device_name:device_name,duration:"onehr"
+                    },
+                    success: function(response) {
+                        $('#template-container').html(response.html);
+                    },
+                    error: function(xhr, errmsg, err) {
+                        console.log(errmsg);
+                    }
+                });
+            });
+    });
+
+    function device_onchange(device_name){
+        datas = {csrfmiddlewaretoken: '{{ csrf_token }}','device_name':device_name,'duration':"onehr"};
+        $.ajax({
+                    url: 'calculate_data/',
+                    type:'POST',
+                    data: datas
+                });
+    }
+        </script>
+        
+    </head>
+    <body style="background-color: white;">
+        <aside id="left-panel" class="left-panel">
+            <nav class="navbar navbar-expand-sm navbar-default">
+    
+                <div id="main-menu" class="main-menu collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                       
+    
+                      <li>
+                       <a href="{% url 'dashboard' %}"  ><i class="menu-icon fa fa-automobile"></i>My Device</a></li>
+                        <li >
+                            <a href="{% url 'profile_page' %}" > <i class="menu-icon fa fa-user-plus"></i>Profile</a>             
+                        </li> 
+                        <li>
+                            <a href="{% url 'analytics' %}"><i class="menu-icon fa fa-bar-chart"></i>Analytics</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'logout' %}"><i class="menu-icon fa fa-sign-out"> </i>Logout</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        <div id="right-panel" class="right-panel">
+            <header id="header" class="header">
+                <div class="top-left">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href=""><img src="{% static '/image/logo1.png'%}" alt="Logo"></a>
+                       
+                        <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                </div>
+               
+            <center><div class="head">ANALYTICS</div></center>
+            
+            </header>
+            <br><br><br><br>
+            
+            <div class="data_container">
+                <div class="topnav">
+                {% for device in device_names%}
+                
+                    <a  class="nav-link" data-device={{device.device_name}} >{{device.device_name}}</a>
+                {% endfor %}
+                </div>
+               <div id="template-container">
+                
+                <!-- {% include "Iot_platform_app/graph.html"  %} -->
+                
+               </div>
+                
+                </div>
+            </div>    
+
+                 
+            
+        </div>
+    
+    </body>
+</html>

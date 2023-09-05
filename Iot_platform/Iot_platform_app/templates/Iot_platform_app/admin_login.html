@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin Login page</title> 
+        <link rel="stylesheet" href="{% static '/css/login.css'%}">
+    </head>
+    <body>
+        <div>
+            {% include 'Iot_platform_app/message.html' %}
+          </div>
+        <h1>IOT PLATFORM</h1>
+        <div class="column">
+        <div class="image">
+            <img src="{% static '/image/login.png'%}" alt="" style="width:298%;padding-left:166px;margin-top:-27px">
+        </div>
+        <div class="container">
+            <h3>ADMIN LOGIN</h3><br>
+            <form method='POST'>
+                {% csrf_token %}
+                <label for="adminmail">Email ID</label> <br>
+                <input class = "data"type="email" name="adminmail" > <br><br>
+
+                <label for="pass">Password</label> <br>
+                <input  class = "data" type="password" name="pass" >  <br><br><br>
+
+                <input class = "submit" type="submit" value="LOGIN" formaction="{% url 'admin_register' %}"><br><br>
+                
+            </form>
+
+            
+          
+        </div>
+        </div>
+    </body>
+</html>
+    

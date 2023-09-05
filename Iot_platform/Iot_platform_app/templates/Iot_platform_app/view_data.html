@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>krishtec</title>
+    <link rel="stylesheet" href="{% static '/css/style1.css'%}">
+    <link rel="stylesheet" href="{% static '/css/admin.css'%}">
+    <link rel="stylesheet" href="{% static '/css/view_data.css'%}">
+    <script type="text/javascript" src="{% static '/js/highlight.pack.js'%}"> </script>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script>
+        $.noConflict();
+    
+    jQuery(document).ready(function($) {
+    
+        "use strict";
+    
+        [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+            new SelectFx(el);
+        });
+    
+        jQuery('.selectpicker').selectpicker;
+    
+    
+        
+    
+        $('.search-trigger').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $('.search-trigger').parent('.header-left').addClass('open');
+        });
+    
+        $('.search-close').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $('.search-trigger').parent('.header-left').removeClass('open');
+        });
+    
+        $('.equal-height').matchHeight({
+            property: 'max-height'
+        });
+    
+        // var chartsheight = $('.flotRealtime2').height();
+        // $('.traffic-chart').css('height', chartsheight-122);
+    
+    
+        // Counter Number
+        $('.count').each(function () {
+            $(this).prop('Counter',0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 3000,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
+    
+    
+          
+          
+        // Menu Trigger
+        $('#menuToggle').on('click', function(event) {
+            var windowWidth = $(window).width();         
+            if (windowWidth<1010) { 
+                $('body').removeClass('open'); 
+                if (windowWidth<760){ 
+                    $('#left-panel').slideToggle(); 
+                } else {
+                    $('#left-panel').toggleClass('open-menu');  
+                } 
+            } else {
+                $('body').toggleClass('open');
+                $('#left-panel').removeClass('open-menu');  
+            } 
+                  
+        }); 
+    
+          
+        $(".menu-item-has-children.dropdown").each(function() {
+            $(this).on('click', function() {
+                var $temp_text = $(this).children('.dropdown-toggle').html();
+                $(this).children('.sub-menu').prepend('<li class="subtitle">' + $temp_text + '</li>'); 
+            });
+        });
+    
+    
+        // Load Resize 
+        $(window).on("load resize", function(event) { 
+            var windowWidth = $(window).width();         
+            if (windowWidth<1010) {
+                $('body').addClass('small-device'); 
+            } else {
+                $('body').removeClass('small-device');  
+            } 
+            
+        });
+      
+      
+    });
+    </script>
+        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    @media only screen and (min-device-width: 768px) {
+    .gauge-container {
+      width: 150px;
+      height: 150px;
+      
+      
+    }
+}
+.gauge-container.three > .gauge > .dial {
+  stroke: #334455;
+  stroke-width: 6;
+  
+ 
+}
+.gauge-container.three > .gauge > .value {
+  stroke: #C9DE3C;
+  stroke-width: 6;
+  
+}
+.gauge-container.three > .gauge > .value-text {
+  fill: #C9DE3C;
+  
+}
+.device_name_data{
+    float:center;
+    color: #0a1f29;
+    margin-left: 40%;
+    font-size:bold;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 600;
+}
+
+
+
+  </style>
+  
+
+</head>
+
+  
+
+<body>
+  <aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+               
+
+            <li>
+               <a href="{% url 'create_admin' %}"  ><i class="menu-icon fa fa-user-plus"></i>Add Admin</a></li>
+            <li>
+                <a href="{% url 'userdetails' %}"  ><i class="menu-icon fa fa-database"></i>User Datas</a></li>
+               <li>
+                <a href="{% url 'logout' %}"><i class="menu-icon fa fa-sign-out"> </i>Logout</a>
+            </li>
+                
+            </ul>
+        </div><!-- /.navbar-collapse  -->
+    </nav>
+</aside>
+<div id="right-panel" class="right-panel" >
+ 
+
+  <!-- Header-->
+  <header id="header" class="header">
+      <div class="top-left">
+          <div class="navbar-header">
+              <a class="navbar-brand" href=""><img src="{% static '/image/logo1.png'%}" alt="Logo"></a>
+             
+              <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+          </div>
+      </div>
+     
+  <center><div class="head"> {{ Name }}</div></center>
+  </header>
+  <br><br><br><br>
+  <div>
+    {% include 'Iot_platform_app/message.html' %}
+  </div>
+  {% for x in device_names %}
+  <div class="accordion">
+    <div class="accordion-item">
+      <div class="accordion-item-header" onclick="device_datas('{{ x.device_id }}')">
+       {{x.device_name}}
+      </div>
+      <div class="accordion-item-body" >
+        <div class="accordion-item-body-content" id="{{ x.device_id }}" >
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+      
+</div>  
+
+<div>
+</div>
+
+</div >
+
+  
+  
+<script>
+
+    const accordionItemHeaders = document.querySelectorAll(".accordion-item-header");
+    
+    accordionItemHeaders.forEach(accordionItemHeader => {
+      accordionItemHeader.addEventListener("click", event => {
+        
+        // Uncomment in case you only want to allow for the display of only one collapsed item at a time!
+        
+        // const currentlyActiveAccordionItemHeader = document.querySelector(".accordion-item-header.active");
+        // if(currentlyActiveAccordionItemHeader && currentlyActiveAccordionItemHeader!==accordionItemHeader) {
+        //   currentlyActiveAccordionItemHeader.classList.toggle("active");
+        //   currentlyActiveAccordionItemHeader.nextElementSibling.style.maxHeight = 0;
+        // }
+    
+        accordionItemHeader.classList.toggle("active");
+        const accordionItemBody = accordionItemHeader.nextElementSibling;
+        if(accordionItemHeader.classList.contains("active")) {
+            
+          accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";
+          
+        }
+        else {
+          accordionItemBody.style.maxHeight = 0;
+        }
+        
+      });
+    });
+    </script>
+    <script>
+        function device_datas(x){
+            var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','id_val':x}
+            $.post({
+                url:'device_details/',
+                data:datas,
+                success: function(response) {
+                        var container = document.getElementById(x);
+                        
+                        while (container.hasChildNodes()) {
+                            container.removeChild(container.firstChild);
+                        }
+                        if (response.device_names.length==4){
+                            var newTag1 = document.createElement('div');
+                            newTag1.classList.add("device_name_data");
+                            newTag1.textContent =response.device_names[0];
+                            container.appendChild(newTag1);
+
+                            var newTag2 = document.createElement('div');
+                            newTag2.classList.add("device_name_data");
+                            newTag2.textContent =response.device_names[1];
+                            container.appendChild(newTag2);
+
+                            var newTag3 = document.createElement('div');
+                            newTag3.classList.add("device_name_data");
+                            newTag3.textContent =response.device_names[2];
+                            container.appendChild(newTag3);
+
+                            var newTag4 = document.createElement('div');
+                            newTag4.classList.add("device_name_data");
+                            newTag4.textContent =response.device_names[3];
+                            container.appendChild(newTag4);
+                            
+                        }else if (response.device_names.length==3){
+                            var newTag1 = document.createElement('div');
+                            newTag1.classList.add("device_name_data");
+                            newTag1.textContent =response.device_names[0];
+                            container.appendChild(newTag1);
+
+                            var newTag2 = document.createElement('div');
+                            newTag2.classList.add("device_name_data");
+                            newTag2.textContent =response.device_names[1];
+                            container.appendChild(newTag2);
+
+                            var newTag3 = document.createElement('div');
+                            newTag3.classList.add("device_name_data");
+                            newTag3.textContent =response.device_names[2];
+                            container.appendChild(newTag3);
+
+                           
+                            
+                        }else if (response.device_names.length==2){
+                            var newTag1 = document.createElement('div');
+                            newTag1.classList.add("device_name_data");
+                            newTag1.textContent =response.device_names[0];
+                            container.appendChild(newTag1);
+
+                            var newTag2 = document.createElement('div');
+                            newTag2.classList.add("device_name_data");
+                            newTag2.textContent =response.device_names[1];
+                            container.appendChild(newTag2);
+
+      
+                        }else if (response.device_names.length==1){
+                            var newTag1 = document.createElement('div');
+                            newTag1.classList.add("device_name_data");
+                            newTag1.textContent =response.device_names[0];
+                            container.appendChild(newTag1);
+      
+                        }
+
+                        else if (response.device_names.length==0){
+                            var newTag1 = document.createElement('div');
+                            newTag1.classList.add("device_name_data");
+                            newTag1.textContent ="No devices ";
+                            container.appendChild(newTag1);
+      
+                        }
+                 }
+            });
+        }
+    </script>
+    
+
+</body>
+</html>
+

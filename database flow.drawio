@@ -1,0 +1,71 @@
+<mxfile host="app.diagrams.net" modified="2023-04-28T06:22:31.024Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 Edg/112.0.1722.58" etag="TT13g_3Joeoofg5EwcGI" version="21.2.3" type="device">
+  <diagram name="Page-1" id="K0uKJQ79r_uJwOwqhnfG">
+    <mxGraphModel dx="1053" dy="467" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-3" value="USER DETAILS" style="swimlane;whiteSpace=wrap;html=1;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="10" y="210" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-4" value="USER ID&lt;br&gt;USER NAME&lt;br&gt;USER EMAIL ID&lt;br&gt;USER MOBILE NUMBER&amp;nbsp;&lt;br&gt;PASSWORD&lt;br&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="t1Te1WOWuYG9iFKlK1VL-3">
+          <mxGeometry x="20" y="55" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-6" value="DEVICE TABLE" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="200" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-7" value="DEVICE ID&amp;nbsp;&lt;br&gt;DEVICE NAME&lt;br&gt;USER ID" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="t1Te1WOWuYG9iFKlK1VL-6">
+          <mxGeometry x="45" y="60" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-8" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="t1Te1WOWuYG9iFKlK1VL-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="470" y="320" as="sourcePoint" />
+            <mxPoint x="530" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-5" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="320" as="sourcePoint" />
+            <mxPoint x="270" y="320" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-10" value="" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.annotation_2;align=left;labelPosition=right;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="270" width="50" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-12" value="GAUGE" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="190" width="130" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-13" value="DEVICE ID&lt;br&gt;GAUGE ID&lt;br&gt;GAUGE NAME" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="t1Te1WOWuYG9iFKlK1VL-12">
+          <mxGeometry x="15" y="40" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-14" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="690" y="270" as="sourcePoint" />
+            <mxPoint x="750" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-15" value="4 GAUGES &lt;br&gt;TABLE BASED ON&amp;nbsp;&lt;br&gt;GAUGE ID&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="750" y="243" width="130" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-16" value="SWITCH" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="350" width="130" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-17" value="DEVICE ID&lt;br&gt;SWITCH ID&lt;br&gt;SWITCH NAME" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="t1Te1WOWuYG9iFKlK1VL-16">
+          <mxGeometry x="10" y="40" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-18" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="690" y="430" as="sourcePoint" />
+            <mxPoint x="750" y="430" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="720" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="t1Te1WOWuYG9iFKlK1VL-19" value="4 SWITCHES&lt;br&gt;TABLE BASED ON&amp;nbsp;&lt;br&gt;SWITCH ID&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="750" y="410" width="130" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,38 @@
+.topnav {
+
+    overflow: hidden;
+    background-color: #ffffff;
+    width:100%;
+    border-bottom:0.5px solid #c4d3d8;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #6b7174;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-family: "Luminari";
+    font-weight: 800;
+  }
+  
+  .topnav a:hover {
+    background-color:white;
+    color: #1fa1c2;
+    border-bottom:2px solid #026a85 ;
+    
+  }
+  
+  .topnav a.active {
+    background-color:white;
+    color: #1fa1c2;
+    border-bottom:2px solid #026a85 ;
+    
+  }
+.data_container{
+    
+    margin-top: 2%;
+    margin-left:-1%
+  }
+

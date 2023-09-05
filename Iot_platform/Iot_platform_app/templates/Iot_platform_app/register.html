@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Signup page</title> 
+        <link rel="stylesheet" href="{% static '/css/signup.css'%}">
+    </head>
+    <body>
+        <div>
+            {% include 'Iot_platform_app/message.html' %}
+          </div>
+        <h1>IOT PLATFORM</h1>
+        <div class="column">
+            
+        <div class="image">
+            <img src="{% static '/image/Register IoT.png'%}" alt="" style="width:395;padding-left:72px;margin-top:-65px">
+        </div>
+        <div class="container">
+            <h3>REGISTER HERE</h3><br>
+            <form method='POST'>
+                {% csrf_token %}
+                <label for="name">Name</label> <br>
+                <input class = "data"type="text" name="name" > <br><br>
+
+                <label for="mobile">Mobile Number</label> <br>
+                <input class = "data"type="tel" name="mobile" > <br><br>
+
+                <label for="usermail">Email ID</label> <br>
+                <input class = "data"type="email" name="usermail" > <br><br>
+
+
+
+                <label for="pass">Password</label> <br>
+                <input  class = "data" type="password" name="pass" >  <br><br><br>
+
+                <label for="cpass">Confirm Password</label> <br>
+                <input  class = "data" type="password" name="cpass" >  <br><br><br>
+
+                <input class = "submit" type="submit" placeholder="SUBMIT" formaction="{% url 'regsiter' %}"><br><br>
+                
+            </form>
+
+            
+            <p>Already have an account?</p>
+            <a href="{% url 'login' %}"><button>Login now</button></a><br><br><br>
+        </div> 
+        </div>
+
+    </body>
+</html>
+    

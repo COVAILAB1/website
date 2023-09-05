@@ -1,0 +1,603 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>krishtec</title>
+    <link rel="stylesheet" href="{% static '/css/device_page.css'%}">
+    <link rel="stylesheet" href="{% static '/css/device_page_edit.css'%}">
+    <script type="text/javascript" src="{% static '/js/highlight.pack.js'%}"> </script>
+    <script type="text/javascript" src="{% static '/js/gauge.js'%}"> </script>
+    <link rel="stylesheet" href="{% static '/css/style1.css'%}">
+    <link rel="stylesheet" href="{% static '/css/topic.css'%}">
+    <link rel="stylesheet" href="{% static '/css/switch1.css'%}">
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+    <script>
+        $.noConflict();
+    
+    jQuery(document).ready(function($) {
+    
+        "use strict";
+    
+        [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+            new SelectFx(el);
+        });
+    
+        jQuery('.selectpicker').selectpicker;
+    
+    
+        
+    
+        $('.search-trigger').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $('.search-trigger').parent('.header-left').addClass('open');
+        });
+    
+        $('.search-close').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            $('.search-trigger').parent('.header-left').removeClass('open');
+        });
+    
+        $('.equal-height').matchHeight({
+            property: 'max-height'
+        });
+    
+        // var chartsheight = $('.flotRealtime2').height();
+        // $('.traffic-chart').css('height', chartsheight-122);
+    
+    
+        // Counter Number
+        $('.count').each(function () {
+            $(this).prop('Counter',0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 3000,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
+    
+    
+          
+          
+        // Menu Trigger
+        $('#menuToggle').on('click', function(event) {
+            var windowWidth = $(window).width();         
+            if (windowWidth<1010) { 
+                $('body').removeClass('open'); 
+                if (windowWidth<760){ 
+                    $('#left-panel').slideToggle(); 
+                } else {
+                    $('#left-panel').toggleClass('open-menu');  
+                } 
+            } else {
+                $('body').toggleClass('open');
+                $('#left-panel').removeClass('open-menu');  
+            } 
+                  
+        }); 
+    
+          
+        $(".menu-item-has-children.dropdown").each(function() {
+            $(this).on('click', function() {
+                var $temp_text = $(this).children('.dropdown-toggle').html();
+                $(this).children('.sub-menu').prepend('<li class="subtitle">' + $temp_text + '</li>'); 
+            });
+        });
+    
+    
+        // Load Resize 
+        $(window).on("load resize", function(event) { 
+            var windowWidth = $(window).width();         
+            if (windowWidth<1010) {
+                $('body').addClass('small-device'); 
+            } else {
+                $('body').removeClass('small-device');  
+            } 
+            
+        });
+      
+      
+    });
+    </script>
+        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    @media only screen and (min-device-width: 768px) {
+    .gauge-container {
+      width: 150px;
+      height: 150px;
+      
+      
+    }
+}
+.gauge-container.three > .gauge > .dial {
+  stroke: #334455;
+  stroke-width: 6;
+  
+ 
+}
+.gauge-container.three > .gauge > .value {
+  stroke: #C9DE3C;
+  stroke-width: 6;
+  
+}
+.gauge-container.three > .gauge > .value-text {
+  fill: #C9DE3C;
+  
+}
+
+
+
+
+  </style>
+  
+
+</head>
+
+  
+
+<body onload="subscribe();createToggleswitch();createElectricswitch();">
+  <aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-sm navbar-default">
+
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+               
+
+            <li>
+               <a href="{% url 'dashboard' %}"  ><i class="menu-icon fa fa-automobile"></i>My Devices</a></li>
+                <li >
+                    <a href="{% url 'profile_page' %}" > <i class="menu-icon fa fa-user-plus"></i>Profile</a>
+                   
+                    
+                </li>
+                <li>
+                  <a href="{% url 'analytics' %}"><i class="menu-icon fa fa-bar-chart"></i>Analytics</a>
+              </li>
+              <li>
+                <a href="{% url 'logout' %}"><i class="menu-icon fa fa-sign-out"> </i>Logout</a>
+            </li>
+                
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>
+<div id="right-panel" class="right-panel" >
+ 
+
+  <!-- Header-->
+  <header id="header" class="header">
+      <div class="top-left">
+          <div class="navbar-header">
+              <a class="navbar-brand" href=""><img src="{% static '/image/logo1.png'%}" alt="Logo"></a>
+             
+              <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+          </div>
+      </div>
+     
+  <center><div class="head"> IOT- PLATFORM</div></center>
+  </header>
+  <br><br><br><br>
+    
+        <div class="data_container" id="blur">
+          
+
+            <h3>{{ device_name }}</h3>
+            <!-- <button  onclick="copytopics()" class ="myDIV" style="float:left;margin-top:-32px;color:#b4bdc4;background:#fbffff;margin-left:-10px;width:35px;height:35px;border: 1px solid #93afca;"><div style="float:center;margin-top:3px;color:#b4bdc4;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></div></button> -->
+            <!-- <div class ="hide">Topics</div>
+
+            
+            <a class="edit" href="{% url 'edit_device' device_name=device_name %}" ><button style="color:#b4bdc4;background:#fbffff;width:35px;height:35px;border: 1px solid #93afca;"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button></a> -->
+            <div class="dropdown" style="float:Right;">
+              <button class="dropbtn" ><i class="fa fa-ellipsis-v" aria-hidden="true"></i></button>
+              <div class="dropdown-content" style="left:0;">
+                <a href="{% url 'edit_device' device_name=device_name %}"> <i class="fa fa-edit"></i>  Edit</a>
+                <a  onclick="copytopics()"><i class="fa fa-list-ul" aria-hidden="true"></i>  Topics</a>
+                <!-- <a href="#"><i class="fa fa-trash" aria-hidden="true"></i>  Delete</a> -->
+              </div>
+            </div>
+           
+
+        
+        <div id="page-content-wrapper" style="margin-right:-25%;">
+          <div class="container-fluid">
+        <div class="grid-container" id = "box-data" style="margin-bottom:10%;position:relative;margin-left: -36%;">
+          {% for x in device_gauge %}
+            
+            <div class="droptarget" id ={{x.gauge_id}} style="width:40%;height:40vh;">
+              <h6 >{{x.Title}}</h6>
+              <div style="float:right;margin-top:-20px;margin-right:10px;color:#b4bdc4;"></div>
+              <div class="example" >
+                
+                <div class="display{{ forloop.counter0 }}">
+                <center><div id="gauge{{ forloop.counter0 }}" class="gauge-container three" data-min={{x.min_val}} data-max={{x.max_val}} style="margin-top:9px;">
+                  
+                </div>
+                
+                </div>
+                </div>
+                </div>
+            
+        
+            {% endfor %} 
+              
+    
+              {% for s in device_Toggle %}
+             
+              <div class="droptarget" id ={{s.toggle_switch_id}} style="width:40%;height:40vh;">
+                <h6 >{{s.Title}}</h6>
+                <div style="float:right;margin-top:-20px;margin-right: 10px;color:#b4bdc4"></div>
+                <div class="container">
+                 
+                   
+                    <center>
+                      
+                      <label class="switch"  style="margin-top:10%;">
+                        <input type="checkbox" style="text-align: center;" data-id={{s.toggle_switch_id}} id="toggle_switch_{{forloop.counter0}}" onclick= "window['toggle_switch{{ forloop.counter0 }}']();">
+                        <span class="slider round"></span>
+                        <!-- <h5>Off /On </h5> -->
+                      </label>
+                
+                    </center>
+                    
+                </div>
+            </div>
+             
+              {% endfor %}
+              {% for ele_switch in device_switch %}
+
+              <div class="droptarget" id ={{ele_switch.electric_switch_id}} style="width:40%;height:40vh;">
+                <h6 >{{ele_switch.Title}}</h6>
+                <div style="float:right;margin-top:-20px;margin-right: 10px;color:#b4bdc4"></div>
+                <div class="container">
+                 
+                  <input  type="checkbox" id="light-switch{{forloop.counter0}}" data-id ={{ele_switch.electric_switch_id}} onclick= "window['electric_switch{{ forloop.counter0 }}']();" />
+                  <label for="light-switch{{forloop.counter0}}" id="light-switch-label{{forloop.counter0}}" style="margin-top:30px;">
+                  
+                   <div class="switch{{forloop.counter0}}"></div>
+                  
+                   
+                    
+                </div>
+            </div>
+
+              {% endfor %}
+
+              {% for l in device_Label %}
+              <div class="droptarget" id ={{l.label_id}} style="width:40%;height:40vh;">
+                <h6>{{l.Title}}</h6>
+                <div   style="float:right;margin-top:-20px;margin-right: 10px;color:#b4bdc4"></div>
+                <div class="container" >
+                  
+                    
+                    <div class="col-xl-3 mb-50" >
+                  <div class="bg-white widget-style1 border-radius-10 height-50-p box-shadow" style="margin-top:7%;" >
+                    <div class="d-flex flex-wrap align-items-center">
+                      
+                      </div>
+                      <div class="widget-data" >
+                        
+                        <div class="weight-500" style="text-align: center;" ><p id="Label{{ forloop.counter0 }}" style="font-size:21px;font-weight:500;font-family: var(--secondary-font),sans-serif;color: grey;">Label</p></div>
+                      </div>
+                     
+                    </div>
+                   
+                  </div>
+                 
+              </div>
+              </div>
+              {% endfor %}
+        </div>
+      </div>
+      </div>
+
+</div>  
+
+<div>
+</div>
+  <div class="popup2" id="popup_id2" style="margin-left:35%;margin-top:5%">
+    <button id="close-btn-label" onclick="copytopics()">&times;</button><br>
+    <h2>Topics</h>
+    <div class="toipcs_conatiner">
+      <table id="topics">
+    {% for gauge in device_gauge %}
+    
+    <tr>
+      <td>{{gauge.Title}}</td>
+      <td ><div id="topic_{{ gauge.Title }}">{{gauge.mqtt_topic}}</div> </td>
+      <td ><div onclick="copytheelement('topic_{{ gauge.Title }}')"><i class="fa fa-clone" aria-hidden="true" ></i></div></td>
+
+    </tr>
+    {% endfor %}
+    {% for toggle in device_Toggle %}
+   
+
+      <tr>
+        <td>{{toggle.Title}}</td>
+        <td ><div id="topic_{{ toggle.Title }}">{{toggle.mqtt_topic}}</div></td>
+        <td ><div onclick="copytheelement('topic_{{ toggle.Title }}')"><i class="fa fa-clone" aria-hidden="true"></i></div></td>
+
+      </tr>
+    
+    {% endfor %}
+    {% for electric_switch_data in device_switch %}
+   
+
+      <tr>
+        <td>{{electric_switch_data.Title}}</td>
+        <td ><div id="topic_{{ electric_switch_data.Title }}">{{electric_switch_data.mqtt_topic}}</div> </td>
+        <td> <div onclick="copytheelement('topic_{{ electric_switch_data.Title }}')"> <i class="fa fa-clone" aria-hidden="true" > </i></div></td>
+
+      </tr>
+    
+    {% endfor %}
+
+    {% for label in device_Label %}
+   
+
+      <tr>
+        <td>{{label.Title}}</td>
+        <td ><div id="topic_{{ label.Title }}">{{label.mqtt_topic}}</div> </td>
+        <td> <div onclick="copytheelement('topic_{{ label.Title }}')"> <i class="fa fa-clone" aria-hidden="true" > </i></div></td>
+
+      </tr>
+    
+    {% endfor %}
+
+    
+
+    
+</table>    
+</div>
+</div>
+</div >
+
+
+
+<script>
+  
+
+  
+  if (parseInt('{{device_gauge|length}}')>=1 || parseInt('{{device_Label|length}}') >= 1  ) {
+    myInterval=setInterval(subscribe, 1000);
+  }
+  
+  var temp = document.getElementById("gauge0");
+  var temp1 = document.getElementById("gauge1");
+  var temp2 = document.getElementById("gauge2");
+  var temp3 = document.getElementById("gauge3");
+  var gauge0 = Gauge(
+        document.getElementById("gauge0"),
+		    {
+          
+          min:parseInt(temp.getAttribute("data-min")),
+          max: parseInt(temp.getAttribute("data-max")),
+          value: 0
+
+        }
+      );
+       
+  gauge0.setValueAnimated(50, 2.5);
+  var gauge1 = Gauge(
+  document.getElementById("gauge1"),
+  {
+    min:parseInt(temp1.getAttribute("data-min")),
+    max: parseInt(temp1.getAttribute("data-max")),
+    value: 0
+  }
+);
+  
+  
+
+  var gauge2 = Gauge(
+  document.getElementById("gauge2"),
+  {
+    min:parseInt(temp2.getAttribute("data-min")),
+    max: parseInt(temp2.getAttribute("data-max")),
+    value: 0
+    
+  }
+);
+  
+  gauge2.setValueAnimated(150, 1.5);
+
+  var gauge3 = Gauge(
+  document.getElementById("gauge3"),
+  {
+    min:parseInt(temp3.getAttribute("data-min")),
+    max: parseInt(temp.getAttribute("data-max")),
+    value: 0
+  }
+);
+
+function createToggleswitch(){
+ 
+  for(let i=0;i<parseInt('{{device_Toggle|length}}');i++){
+      const functionName = `toggle_switch${i}`;
+      const functionBody = `
+      
+      var id_val = document.getElementById("toggle_switch_${i}");
+      id_val = id_val.getAttribute("data-id");
+      
+      var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','id_val':id_val,'type_switch':'toggle'}
+      $.post({
+        url:'/publish_topic/{{device_name}}',
+        data:datas
+      });
+
+      `;
+      const newFunction = new Function(functionBody);
+      window[functionName] = newFunction;
+  }
+}
+
+function createElectricswitch(){
+ 
+ for(let i=0;i<parseInt('{{device_switch|length}}');i++){
+     const functionName = `electric_switch${i}`;
+     const functionBody = `
+     
+     var id_val = document.getElementById("light-switch${i}");
+     id_val = id_val.getAttribute("data-id");
+     
+     var datas = {csrfmiddlewaretoken: '{{ csrf_token }}','id_val':id_val,'type_switch':'switch'}
+     $.post({
+       url:'/publish_topic/{{device_name}}',
+       data:datas
+     });
+
+     `;
+     const newFunction = new Function(functionBody);
+     window[functionName] = newFunction;
+ }
+}
+  
+function subscribe(){
+  
+ $.ajax({ 
+              
+              url:'/subscribe_topic/{{device_name}}',
+              // device_details:{csrfmiddlewaretoken: '{{ csrf_token }}',device_name:'{{device_name}}'},
+              type:'POST',
+              success: function(data) {
+              
+                
+                  if ('{{device_gauge|length}}'== 0){
+                    if('{{device_Label|length}}' ==1){
+                           var x = document.getElementById("Label0");
+                           x.innerText=data.change_variable0;
+                        }
+                    else if('{{device_Label|length}}' ==2){
+                          var x = document.getElementById("Label0");
+                          x.innerText=data.change_variable0;
+
+                          var x1 = document.getElementById("Label1");
+                          x1.innerText=data.change_variable1;
+                        }
+                    else if('{{device_Label|length}}' ==3){
+                          var x = document.getElementById("Label0");
+                          x.innerText=data.change_variable0;
+                          var x1 =document.getElementById("Label1");
+                          x1.innerText=data.change_variable1;
+                          var x2 = document.getElementById("Label2");
+                          x2.innerText=data.change_variable2;
+                        }
+                    else if('{{device_Label|length}}' ==4){
+                          var x = document.getElementById("Label0");
+                          x.innerText=data.change_variable0;
+                          var x1 = document.getElementById("Label1");
+                          x1.innerText=data.change_variable1;
+                          var x2 = document.getElementById("Label2");
+                          x2.innerText=data.change_variable2;
+                          var x3 = document.getElementById("Label3");
+                          x3.innerText=data.change_variable3;
+                        }
+                  }
+                  else if('{{device_gauge|length}}'== 1){
+                        gauge0.setValueAnimated(data.change_variable0, 1.5);
+                        if('{{device_Label|length}}' ==1){
+                          var x = document.getElementById("Label0");
+                          x.innerText=data.change_variable1;
+                        }
+                        else if('{{device_Label|length}}' ==2){
+                          var x = document.getElementById("Label0");
+                          x.innerText=data.change_variable1;
+                          var x1= document.getElementById("Label1");
+                          x1.innerText=data.change_variable2;
+                        }
+                        else if('{{device_Label|length}}' ==3){
+                          var x = document.getElementById("Label0");
+                          x.innerText=data.change_variable1;
+                          var x1 = document.getElementById("Label1");
+                          x1.innerText=data.change_variable2;
+                          var x2 = document.getElementById("Label2");
+                          x2.innerText=data.change_variable3;
+                        }
+                  }
+
+                  else if('{{device_gauge|length}}' == 2){
+                        gauge0.setValueAnimated(data.change_variable0, 1.5);
+                        gauge1.setValueAnimated(data.change_variable1, 1.5);
+                        if('{{device_Label|length}}' ==1){
+                          var x = document.getElementById("Label0");
+                          x.innerText=data.change_variable2;
+                        }
+                        else if('{{device_Label|length}}' ==2){
+                          var x = document.getElementById("Label0");
+                          x.innerText=data.change_variable2;
+                          var x1 = document.getElementById("Label1");
+                          x1.innerText=data.change_variable3;
+                        }
+                  }
+
+                  else if('{{device_gauge|length}}' == 3){
+                        gauge0.setValueAnimated(data.change_variable0, 1.5);
+                        gauge1.setValueAnimated(data.change_variable1, 1.5);
+                        gauge2.setValueAnimated(data.change_variable2, 1.5);
+                        if('{{device_Label|length}}' ==1){
+                          var x = document.getElementById("Label0");
+                          x.innerText=data.change_variable3;
+                        }
+                  }
+
+                  else if('{{device_gauge|length}}' == 4){
+                        gauge0.setValueAnimated(data.change_variable0, 1.5);
+                        gauge1.setValueAnimated(data.change_variable1, 1.5);
+                        gauge2.setValueAnimated(data.change_variable2, 1.5);
+                        gauge3.setValueAnimated(data.change_variable3, 1.5);
+                  }
+                  
+
+                 
+        },
+             
+    });
+}
+function copytopics() {
+             
+              
+              var blur=document.getElementById('blur');
+              blur.classList.toggle('active');
+
+              var popup = document.getElementById('popup_id2');
+              popup.classList.toggle('active');
+
+              
+          }
+
+function copytheelement(x){
+  var topic = `#${x}`;
+  const element = document.querySelector(topic);
+  
+  const storage = document.createElement('textarea');
+  
+  storage.value = element.innerHTML;
+  
+  element.appendChild(storage);
+  storage.select();
+  storage.setSelectionRange(0, 99999);
+  
+  document.execCommand('copy');
+  element.removeChild(storage);
+}
+  
+
+
+
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,38 @@
+function createSwitchFunctions(numSwitches) {
+  for (let i = 1; i <= numSwitches; i++) {
+    // Generate function name and body
+    const functionName = `switchFunction${i}`;
+    const functionBody = `
+      console.log('Switch ${i} is toggled');
+      // Additional logic for switch ${i}
+    `;
+    
+    // Create the function dynamically
+    window[functionName] = new Function(functionBody);
+  }
+}
+
+// Usage
+const numSwitches = 5;
+createSwitchFunctions(numSwitches);
+
+// Call the dynamically created functions
+switchFunction1(); // Output: Switch 1 is toggled
+switchFunction2(); // Output: Switch 2 is toggled
+switchFunction3(); // Output: Switch 3 is toggled
+// ...
+
+
+
+ var ison = !${toggle_switch_lis[i]};
+
+      $post({
+        url:'/publish_topic/',
+        datas:{csrfmiddlewaretoken: '{{ csrf_token }}',device_name:'{{device_name}}'}
+        
+      })
+
+{% for counter in counters %}
+    <button onclick="window['toggle_switch{{ counter }}'] && window['toggle_switch{{ counter }}']()">{{ counter }}</button>
+{% endfor %}
+typeof window['toggle_switch{{ counter }}'] === 'function' && window['toggle_switch{{ counter }}']()"

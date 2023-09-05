@@ -1,0 +1,279 @@
+
+.wui-side-menu {
+    position:fixed;
+    top:0;
+    left:0;
+    width:150px;
+    height:100%;
+    font-family: 'Times New Roman', Times, serif;
+    backface-visibility:hidden;
+    z-index:3;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);  
+    -webkit-transition: webkit-transform 220ms ease-in-out;
+    transition: transform 220ms ease-in-out;
+    margin-top: 10%;
+  }
+  .wui-side-menu.open {-webkit-transform: translateX(0);transform: translateX(0);} 
+  .wui-side-menu.open ~ .content .side-menu-trigger {display:none;}
+  .wui-side-menu.open {box-shadow: 2px 0 16px 0 rgba(0,0,0,0.3);}
+  .wui-side-menu .header, 
+  .wui-content-header {vertical-align:baseline;line-height:50px;}
+  .wui-side-menu-pin-trigger, 
+      .wui-side-menu-trigger {width:50px;height:50px;text-align:center;display: inline-block;font-size:18px;line-height: 50px;}
+  
+  .wui-side-menu .wui-side-menu-pin-trigger    {display:none;float: right;}
+  .wui-side-menu .wui-side-menu-pin-trigger i  {-webkit-transition:all 0.22s ease-out;-moz-transition:all 0.22s ease-out;
+                                                        -o-transition:all 0.22s ease-out;     transition:all 0.22s ease-out;}
+  .wui-side-menu .wui-side-menu-items {overflow-y:auto;height: calc(100% - 50px);}
+  .wui-side-menu .wui-side-menu-item {
+     display:block;
+     width:100%;
+     padding:15px 12px ;
+     border-left:5px solid transparent;
+  }
+  .wui-side-menu .wui-side-menu-item {height:50px}
+  .wui-side-menu .wui-side-menu-item i.box-ico {margin-right:4px;}
+  
+  /* overlay */
+  .wui-overlay {position:absolute;top:0;left:0;right:0;bottom:0;z-index:2;background-color: rgba(0, 0, 0, 0.1);opacity:0.5;display:none;}
+  .wui-side-menu.open ~ .wui-overlay, .wui-overlay.active {display:block;} 
+  
+  /* content */
+  .wui-content {z-index:1;position:absolute;top:0;right:0;bottom:0;left:0;
+               -webkit-transition:all 0.22s ease-out;-moz-transition:all 0.22s ease-out;
+               -o-transition:all 0.22s ease-out;transition:all 0.22s ease-out;padding:0 10px;}
+  .wui-content .wui-side-menu-trigger {margin-left:-10px;}
+  @media only screen and (min-width:768px){
+      .wui-side-menu .wui-side-menu-pin-trigger {display:inline-block;} 
+      .wui-side-menu.open {box-shadow: initial;}
+      .wui-side-menu.open ~ .wui-overlay {display:none;} 
+      .wui-side-menu.open ~ .wui-content .wui-side-menu-trigger {display:none;} 
+      .wui-side-menu.open:not(.pinned) ~ .wui-overlay {display:block;}
+      .wui-side-menu.open:not(.pinned) {box-shadow: 2px 0 16px 0 rgba(0,0,0,0.3);}
+      .wui-side-menu.open.pinned ~ .wui-content {left:220px;}
+  }
+  ul.wui-side-menu-items {list-style: none;padding:0}
+  
+  .wui-side-menu {background-color:#10acd3;color:#ddd;}
+  .wui-side-menu .wui-side-menu-trigger:hover,
+  .wui-side-menu-item:hover,
+  .wui-side-menu-pin-trigger:hover
+      {color: #fff;background-color: #383f45;}
+  
+  .wui-side-menu a 
+   {color:#fff;text-decoration:none}
+  .wui-side-menu .wui-side-menu-item.active
+      {border-left-color: #158439; color:#158439}
+  .wui-content a {color:#000;}
+  
+
+  /* demo */
+  body {margin-top:0%; font-family:'arial';font-weight:100;}
+  *, *:after, *:before {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+  #events {background-color:#ccc;}
+
+
+h1{
+    text-align:center;
+    font-family:'Times New Roman', Times, serif;
+    color: #023d74;
+    margin-left:-12%;
+    margin-top: -56%;
+}
+.device{
+    
+    margin-left:150px;
+    
+    height:100%;
+    margin-top:-45%;
+    
+
+
+}
+.logout {
+    margin-left:85%;
+    margin-top: -45%;
+}
+button{
+    color: white;
+    background-color:#10acd3;
+    border: none;
+    width: 140px;
+    height: 40px;
+    border-radius: 10px;
+    
+    float: right;
+
+    
+}
+
+.side-nave-bar{
+    width:100%;
+    height: 100vh;
+    margin-top:-6.5%;
+}
+.side-bar{
+    margin-left:-0.6%;
+    width: 150px;
+    height: 110%;
+    background-color: #10acd3;
+    position: fixed;
+    
+}
+.side-bar ul {
+    padding-top:50px;
+}
+.side-bar li a {
+
+    color:#10acd3;
+    text-decoration: none;
+    margin-top: 1%;
+    
+    
+    
+    
+}
+
+.side-bar ul li{
+    
+    list-style-type: none ;
+    margin-left: -15.5%;
+    float:center;
+    background-color: white;
+    border-radius:10px;
+    margin-top: 20%;
+    text-align: center;
+    height:4vh;
+    width:90%;
+   
+}
+
+.data_container#blur.active{
+    filter: blur(20px);
+    pointer-events:none;
+    user-select: none;
+}
+#popup_id {
+    position: fixed;
+    width:40%;
+    height: 55%;
+    text-align: center;
+    box-shadow: 0 5px 30px rgba(0, 0,0, .30);
+    background:#fff;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    transform:translate(-50%,-50%) ;
+    margin-left: 35%;
+    margin-top: 5%;
+  }
+
+#close-btn{
+    color: white;
+    background-color:#10acd3;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+   
+    float:right;
+    margin-top: -9.5%;
+    margin-left:-12%;
+    margin-right:-1%;
+}
+.popup input[type = "submit"]{
+    color: white;
+    background-color:#10acd3;
+    width: 140px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10%;
+}
+
+#popup_id.active{
+    top:50%;
+    visibility:visible;
+    opacity: 1;
+    transform: 0.5s;
+}
+
+
+.devicename-list{
+    padding-left: 3%;
+}
+
+
+.devicename-list ul{
+    line-height: 2.5em;
+    float: left;
+    list-style-type: none;
+   
+    font-weight: bold;
+}
+
+.devicename-list ul a{
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+    color: #043772;
+}
+
+.create_device{
+    margin-right: 3%;
+    margin-top: 2%;
+    
+}
+#new_device{
+    color: white;
+}
+#popup_id h3{
+    margin-top: 5%;
+    text-transform:uppercase;
+    font-family: 'Times New Roman', Times, serif;
+    font-family: 10px;
+    color: #023d74;
+}
+
+#popup_id form{
+    margin-top: 3%;
+   
+}
+
+#popup_id label{
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+    font-weight:bold;
+    padding-right:3%;
+    margin-top:1%;
+}
+#popup_id input[type="text"]{
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    border: 1px solid rgb(85, 85, 85);
+    border-radius: 3px;
+    margin-right:3%
+    
+}
+.data_container p{
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+    color:black;
+}
+.data_container {
+   
+  
+    margin-left:0.5%;
+
+
+   
+    
+}
+.data_container h2{
+    color:black ;
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 17px;
+}
