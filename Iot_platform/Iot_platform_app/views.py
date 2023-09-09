@@ -349,7 +349,7 @@ def mqtt_view_subscribe(request,device_name):
         print(recieved_messages)
         
         if len(topics_lis)==4:
-             
+            
             table_name = f"{topic_id[0]}"
             
             dynamic_model = apps.get_model(app_label='Iot_platform_app', model_name=table_name)
@@ -397,10 +397,10 @@ def mqtt_view_subscribe(request,device_name):
                 obj3.save()
 
             return JsonResponse({'change_variable0':recieved_messages[topics_lis[0]],'change_variable1':recieved_messages[topics_lis[1]],'change_variable2':recieved_messages[topics_lis[2]],'change_variable3':recieved_messages[topics_lis[3]]})
-           
+            
             
         elif len(topics_lis)==3:
-           
+            
             table_name = f"{topic_id[0]}"
             
             dynamic_model = apps.get_model(app_label='Iot_platform_app', model_name=table_name)
@@ -436,10 +436,10 @@ def mqtt_view_subscribe(request,device_name):
                 obj2 = dynamic_model2(**new_data2)
                 obj2.save()
             return JsonResponse({'change_variable0':recieved_messages[topics_lis[0]],'change_variable1':recieved_messages[topics_lis[1]],'change_variable2':recieved_messages[topics_lis[2]]})
-           
+            
 
         elif len(topics_lis)==2:
-            
+             
             table_name = f"{topic_id[0]}"
             
             dynamic_model = apps.get_model(app_label='Iot_platform_app', model_name=table_name)
@@ -464,9 +464,9 @@ def mqtt_view_subscribe(request,device_name):
                 obj1 = dynamic_model1(**new_data1)
                 obj1.save()
             return JsonResponse({'change_variable0':recieved_messages[topics_lis[0]],'change_variable1':recieved_messages[topics_lis[1]]})
-            
+             
         elif len(topics_lis)==1:
-            
+           
             table_name = f"{topic_id[0]}"
             
             dynamic_model = apps.get_model(app_label='Iot_platform_app', model_name=table_name)
@@ -480,7 +480,7 @@ def mqtt_view_subscribe(request,device_name):
                 obj.save()
         
             return JsonResponse({'change_variable0':recieved_messages[topics_lis[0]]})
-           
+            
         else:
             return JsonResponse({'change_variable0':1})
         
