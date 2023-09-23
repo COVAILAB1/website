@@ -6,12 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>krishtec</title>
+    <link rel="stylesheet" href="{% static '/css/style_1.css'%}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="{% static '/css/edit_device_page.css' %}">
+    <link rel="stylesheet" href="{% static '/css/edit_css.css' %}">
     <link rel="stylesheet" href="{% static '/css/switch.css' %}">
-    <link rel="stylesheet" href="{% static '/css/switch1.css' %}">
- 
-    <link rel="stylesheet" href="{% static '/css/style3.css'%}">
+    <link rel="stylesheet" href="{% static '/css/switch_1_css.css' %}">
+    
+   
+    
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
@@ -20,7 +23,8 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
  
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+     
+
      <script>
         $.noConflict();
     
@@ -113,6 +117,93 @@
       
     });
     </script>
+    <style>
+    #light-switch {
+      position:absolute;
+      left:0;
+      top:0;
+      opacity:0;
+      /* &:checked ~ #background {
+        background-color:#ebdbac;
+      } */
+      &:checked ~ #light-switch-label0 {
+        box-shadow:0 2px 2px #dbdbdb;
+        .switch {
+          box-shadow:0 10px 10px -5px rgba(222,222,222,1), 0 0 0 1px rgba(0,0,0,.1), 0 0 0 4px #c2c2c2,0 0 0 5px rgba(0,0,0,.1);
+          &:before {
+            height:75px;
+            top:0px;
+            line-height:75px;
+            background:#e7e7e7;
+            color:#64bf60;
+            text-shadow: 0 0 3px #38ff2e;
+          }
+          &:after {
+            height:70px;
+            bottom:5px;
+            line-height:70px;
+            background:#fffaea;
+            box-shadow:0 5px 0 #dedede;
+            color:#d7bf95;
+            text-shadow:0 0 0px transparent;
+          }
+        }
+      }
+    }
+    
+    #light-switch-label {
+      position:relative;
+      display:block;
+      height:150px;
+      width:100px;
+      z-index:1;
+      margin:100px auto 0 auto;
+      background-color:#fffaea;
+      border-radius:10px;
+      .switch {
+        cursor:pointer;
+        height:150px;
+        width:95px;
+        background:#f1f0f0;
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin:-75px 0 0 -50px;
+        border-radius:5px;
+        overflow:hidden;
+        box-shadow:0 10px 10px -5px rgb(201, 201, 201), 0 0 0 1px rgba(0,0,0,.1), 0 0 0 4px #c2c2c2,0 0 0 5px rgba(0,0,0,.1);
+        &:before {
+          content:'ON';
+          display:block;
+          position:absolute;
+          height:70px;
+          text-align:center;
+          line-height:70px;
+          width:100px;
+          top:5px;
+          left:0;
+          background:#fcf9f9;
+          color:#d7bf95;
+          border-radius:5px 5px 0 0;
+        }
+        &:after {
+          content:'OFF';
+          display:block;
+          position:absolute;
+          height:75px;
+          text-align:center;
+          line-height:75px;
+          width:100px;
+          bottom:0;
+          left:0;
+          background:#dedede;
+          color:#64bf60;
+          text-shadow: 0 0 3px #38ff2e;
+          border-radius:0 0 5px 5px;
+        }
+      }
+    }
+  </style>
 </head>
 <body>
      
@@ -125,17 +216,17 @@
                
 
             <li>
-              <img src="{% static '/image/3.png'%}"  style="width:97%;height:25vh; padding: 20px;" >
+              <img src="{% static '/image/gauge_img.png'%}"  style="width:97%;height:25vh; padding: 20px;" >
                 <li >
-                  <img src="{% static '/image/1.png'%}"  style="width:97%;height:25vh;padding: 25px;"><br>
+                  <img src="{% static '/image/T1.png'%}"  style="width:97%;height:25vh;padding: 25px;"><br>
 
                 </li>
                 <li>
-                  <img src="{% static '/image/2.png'%}"  style="width:97%;height:35vh;padding: 25px;"><br>
+                  <img src="{% static 'image/s1.png'%}"  style="width:97%;height:35vh;padding: 25px;"><br>
                   
                 </li>
                 <li>
-                  <img src="{% static '/image/4.png'%}" style="width:107%;height:20vh;padding: 25px;"  >
+                  <img src="{% static 'image/l1.png'%}" style="width:107%;height:20vh;padding: 25px;"  >
                 </li>
                 
             </ul>
@@ -147,17 +238,17 @@
            
 
         <li>
-          <img src="{% static '/image/3.png'%}" onclick="showContent1()" style="width:97%;height:25vh; padding: 20px;">
+          <img src="{% static '/image/gauge_img.png'%}" onclick="showContent1()" style="width:97%;height:25vh; padding: 20px;">
             <li >
-              <img src="{% static '/image/1.png'%}" onclick="showContent2()" style="width:97%;height:25vh;padding: 25px;"><br>
+              <img src="{% static 'image/T1.png'%}" onclick="showContent2()" style="width:97%;height:25vh;padding: 25px;"><br>
 
             </li>
             <li>
-              <img src="{% static '/image/2.png'%}" onclick="showContent3()" style="width:97%;height:25vh;padding: 25px;"><br>
+              <img src="{% static 'image/s1.png'%}" onclick="showContent3()" style="width:97%;height:25vh;padding: 25px;"><br>
               
             </li>
             <li>
-              <img src="{% static '/image/4.png'%}" style="width:97%;height:25vh;padding: 25px;" onclick="showContent4()">
+              <img src="{% static 'image/l1.png'%}" style="width:97%;height:25vh;padding: 25px;" onclick="showContent4()">
             </li>
             
         </ul>
@@ -177,15 +268,16 @@
           </div>
       </div>
      
-  <div class="head"> <center>{{device_name}}</center>
+  <div class="head" > {{device_name}}</div>
    
-    <a href="{% url 'device_page' devicename=device_name %}" ><button class="button" > Apply</button></a></div>
+    
     
   
 
   </header>
   <br><br><br><br>
       <div class="data_container" id="blur">  
+        <button class="button" > <a href="{% url 'device_page' devicename=device_name %}" >Apply</a></button>
       <div id="wrapper">
             <!-- Sidebar -->
           
@@ -193,6 +285,7 @@
             <!-- /#sidebar-wrapper -->
       
             <!-- Page Content -->
+  
   <div id="page-content-wrapper" >
       <div class="scrollbar"id="style-1">
         
@@ -306,7 +399,7 @@
 </div>
         <div class="popup" id="popup_id">
   
-          <h2>Gauge Settings</h2> 
+          <h2 style="background-color:black">Gauge Settings</h2> 
             <form method='POST' class="gauge" > 
                 {% csrf_token %}
                  
@@ -323,9 +416,9 @@
                 <label for="max">MAX VALUE:</label>
                 <input type="number" name="max" id="gauge_max"> <br><br>
           
-                <button class="gauge_button" onclick="save_data(document.getElementsByClassName('gauge').id,'gauge')">SAVE</button> <br><br>
+                <button class="gauge_button"style="background-color:#00dfc0"  onclick="save_data(document.getElementsByClassName('gauge').id,'gauge')">SAVE</button> <br><br>
           
-                <button id="close-btn" onclick="settingsformgauge('None')">&times;</button><br>
+                <button id="close-btn"style="background-color:#00dfc0" onclick="settingsformgauge('None')">&times;</button><br>
           
           
           
@@ -336,7 +429,7 @@
 
         <div class="popup1" id="popup_id1">
   
-          <h2>Toggle switch Settings</h2> 
+          <h2 style="background-color:black">Toggle switch Settings</h2> 
 
             <form method='POST' class="toggle"> 
                 {% csrf_token %}
@@ -354,9 +447,9 @@
                 <label for="off">OFF VALUE:</label>
                 <input type="number" name="off" id="toggle_off"> <br><br>
           
-                <button  class="toggle_button" onclick="save_data(document.getElementsByClassName('toggle').id,'toggle')">SAVE</button><br><br>
+                <button  class="toggle_button" style="background-color:#00dfc0" onclick="save_data(document.getElementsByClassName('toggle').id,'toggle')">SAVE</button><br><br>
           
-                <button id="close-btn-toggle" onclick="settingsformtoggle('None')">&times;</button><br>
+                <button id="close-btn-toggle" style="background-color:#00dfc0" onclick="settingsformtoggle('None')">&times;</button><br>
           
           
           
@@ -368,7 +461,7 @@
         
         <div class="popup2" id="popup_id2">
   
-          <h2>Label Settings</h2> 
+          <h2 style="background-color:black">Label Settings</h2> 
           <form method='POST' class="Label_data"> 
               {% csrf_token %}
                
@@ -377,9 +470,9 @@
               <label for="title">Title :</label>
               <input type="text" name="title" id="label_title"> <br><br>  
         
-              <button class="label_button" onclick="save_data(document.getElementsByClassName('Label_data').id,'Label')">SAVE</button> <br><br>
+              <button class="label_button" style="background-color:#00dfc0" onclick="save_data(document.getElementsByClassName('Label_data').id,'Label')">SAVE</button> <br><br>
         
-              <button id="close-btn-label" onclick="settingsformlabel('None')">&times;</button><br>
+              <button id="close-btn-label" style="background-color:#00dfc0" onclick="settingsformlabel('None')">&times;</button><br>
         
         
         
@@ -389,7 +482,7 @@
       </div>
       <div class="popup3" id="popup_id3">
   
-        <h2>Switch Settings</h2> 
+        <h2 style="background-color:black">Switch Settings</h2> 
         <form method='POST' class="switch_data"> 
             {% csrf_token %}
              
@@ -404,9 +497,9 @@
             <label for="off">OFF VALUE:</label>
             <input type="number" name="off" id="switch_off"> <br><br>
       
-            <button class="switch_button" onclick="save_data(document.getElementsByClassName('switch_data').id,'switch')">SAVE</button> <br><br>
+            <button class="switch_button" style="background-color:#00dfc0" onclick="save_data(document.getElementsByClassName('switch_data').id,'switch')">SAVE</button> <br><br>
       
-            <button id="close-btn-switch" onclick="settingsformswitch('None')">&times;</button><br>
+            <button id="close-btn-switch" style="background-color:#00dfc0" onclick="settingsformswitch('None')">&times;</button><br>
       
       
       

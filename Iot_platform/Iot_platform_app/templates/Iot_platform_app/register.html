@@ -1,52 +1,151 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Signup page</title> 
-        <link rel="stylesheet" href="{% static '/css/signup.css'%}">
+
+<head>
+    
+    <style>
+   label{
+       font-size: 18px;
+   }
+   
+   .data{
+       border:none;
+       border-bottom: 2px solid rgb(82, 81, 81);
+       width:320px;
+       height: 30px;
+       float:center;
+   }
+   input:focus{
+       outline: none;
+       box-shadow: 0px 0px 2px #000000;
+       border-color: #5AB0DB;
+   }
+   .data:focus{
+       border:none;
+       
+   }
+   .submit{
+       background-color:#00dfc0;
+       color: white;
+       width: 300px;
+       border:none;
+       height: 40px;
+       border-radius: 10px;
+       
+      
+   }
+   button{
+       
+           background-color:#00dfc0;
+           color: white;
+           width: 300px;
+           border:none;
+           height: 40px;
+           border-radius: 10px;
+          
+       
+   }
+   
+   
+   
+   
+   .column {
+       float: left;
+       width: 98%;
+     }
+   
+     
+    .card {
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.9);
+     transition: 0.5s;
+     width:70%;
+     height:auto;
+     margin-left:15%;
+     margin-top:5%;
+   }
+   
+   .card:hover {
+     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.9);
+   }
+   
+   .left {
+     float: left;
+     width: 30%;
+     
+    
+     padding: 10px;
+     height: 660px; /* Should be removed. Only for demonstration */
+   }
+   .right {
+     float: right;
+     width: 55%;
+     padding: 10px;
+     height: auto; /* Should be removed. Only for demonstration */
+   }
+   /* Clear floats after the columns */
+   .row:after {
+     content: "";
+     display: table;
+     clear: both;
+   }
+   
+   /* Clear floats after the columns */
+   img {
+     float:center;
+     margin-top:50%;
+     margin-left: -10%;
+    
+    
+   
+   }
+   h3{
+   margin-left:20%;
+   }
+    </style>
     </head>
     <body>
-        <div>
-            {% include 'Iot_platform_app/message.html' %}
-          </div>
-        <h1>IOT PLATFORM</h1>
-        <div class="column">
-            
-        <div class="image">
-            <img src="{% static '/image/Register IoT.png'%}" alt="" style="width:395;padding-left:72px;margin-top:-65px">
-        </div>
-        <div class="container">
-            <h3>REGISTER HERE</h3><br>
-            <form method='POST'>
+    <h1  style="margin-left:40%">IOT PLATFORM</h1> 
+    <div class="card">
+   <div class="row">
+     <div class="column left" style="background-color:#00dfc0">
+      <img src="{% static '/image/register_img.png' %}" style="width:100%;">  
+     </div>
+     <div class="column right ">
+             
+               <h3>REGISTER HERE</h3><br>
+               <form method='POST'>
                 {% csrf_token %}
-                <label for="name">Name</label> <br>
-                <input class = "data"type="text" name="name" > <br><br>
-
-                <label for="mobile">Mobile Number</label> <br>
-                <input class = "data"type="tel" name="mobile" > <br><br>
-
-                <label for="usermail">Email ID</label> <br>
-                <input class = "data"type="email" name="usermail" > <br><br>
-
-
-
-                <label for="pass">Password</label> <br>
-                <input  class = "data" type="password" name="pass" >  <br><br><br>
-
-                <label for="cpass">Confirm Password</label> <br>
-                <input  class = "data" type="password" name="cpass" >  <br><br><br>
-
-                <input class = "submit" type="submit" placeholder="SUBMIT" formaction="{% url 'regsiter' %}"><br><br>
-                
-            </form>
-
-            
-            <p>Already have an account?</p>
-            <a href="{% url 'login' %}"><button>Login now</button></a><br><br><br>
-        </div> 
-        </div>
-
-    </body>
-</html>
-    
+                   <label for="name">Name</label> <br>
+                   <input class = "data"type="text" name="name" > <br><br>
+   
+                   <label for="mobile">Mobile Number</label> <br>
+                   <input class = "data"type="tel" name="mobile" > <br><br>
+   
+                   <label for="usermail">Email ID</label> <br>
+                   <input class = "data"type="email" name="usermail" > <br><br>
+   
+   
+   
+                   <label for="pass">Password</label> <br>
+                   <input  class = "data" type="password" name="pass" >  <br><br><br>
+   
+                   <label for="cpass">Confirm Password</label> <br>
+                   <input  class = "data" type="password" name="cpass" >  <br><br><br>
+   
+                   <input class = "submit" type="submit" placeholder="SUBMIT" formaction="{% url 'regsiter' %}"><br><br>
+                   
+               </form>
+   
+               
+               <p>Already have an account?</p>
+               <a href="{% url 'login' %}"><button>Login now</button></a><br><br><br>
+           
+   </div>
+   
+   </div>
+     
+     
+   </div>
+   
+   </body>

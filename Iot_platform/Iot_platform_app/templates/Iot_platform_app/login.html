@@ -6,11 +6,109 @@
         <title>Login page</title> 
         <link rel="stylesheet" href="{% static '/css/login.css'%}">
     </head>
+    <style>
+        label{
+            font-size: 18px;
+        }
+        
+        .data{
+            border:none;
+            border-bottom: 2px solid rgb(82, 81, 81);
+            width:320px;
+            height: 30px;
+            float:center;
+        }
+        input:focus{
+            outline: none;
+            box-shadow: 0px 0px 2px #000000;
+            border-color: #5AB0DB;
+        }
+        .data:focus{
+            border:none;
+            
+        }
+        .submit{
+            background-color:#00dfc0;
+            color: white;
+            width: 300px;
+            border:none;
+            height: 40px;
+            border-radius: 10px;
+            
+           
+        }
+        button{
+            
+                background-color:#00dfc0;
+                color: white;
+                width: 300px;
+                border:none;
+                height: 40px;
+                border-radius: 10px;
+               
+            
+        }
+        
+        
+        
+        
+        .column {
+            float: left;
+            width: 98%;
+          }
+        
+          
+         .card {
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.9);
+          transition: 0.5s;
+          width:70%;
+          height:auto;
+          margin-left:15%;
+          margin-top:5%;
+        }
+        
+        .card:hover {
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.9);
+        }
+        
+        .left {
+          float: left;
+          width: 30%;
+          
+         
+          padding: 10px;
+          height: 450px; /* Should be removed. Only for demonstration */
+        }
+        .right {
+          float: right;
+          width: 55%;
+          padding: 10px;
+          height: 300px; /* Should be removed. Only for demonstration */
+        }
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        
+        /* Clear floats after the columns */
+        img {
+          float:center;
+          margin-top:40%;
+          margin-left:10%;
+         
+        
+        }
+        h3{
+        margin-left:20%;
+        }
+         </style>
     <body>
         <div>
             {% include 'Iot_platform_app/message.html' %}
           </div>
-        <h1>IOT PLATFORM</h1>
+        <!-- <h1>IOT PLATFORM</h1>
         <a href="{% url 'admin_login_page' %}"><button style="width:10%;float: right;margin-top: -3%;" >Admin Login</button></a>
         <div class="column">
         <div class="image">
@@ -35,6 +133,39 @@
            <a href="{% url 'signup' %}"><button>REGISTER NOW</button></a><br><br><br>
         </div>
         </div>
-    </body>
+    </body> -->
+    <h1  style="color:black;">IOT PLATFORM</h1> 
+    <a href="{% url 'admin_login_page' %}"><button style="width:10%;float: right;margin-top: -3%;" >Admin Login</button></a>
+ <div class="card">
+<div class="row">
+  <div class="column left" style="background-color:#00dfc0">
+   <img src="{% static '/image/login_img.png'%}"  style="width:70%;">  
+  </div>
+  <div class="column right ">
+          <h3>LOGIN HERE</h3><br>
+             <form method='POST' > 
+                {% csrf_token %}
+                 <label for="usermail">Email ID</label> <br> 
+                <input class ="data"type="email" name="usermail" > <br><br> 
+
+                <label for="pass">Password</label> <br>
+                 <input  class = "data" type="password" name="pass" >  <br><br><br> 
+
+                 <input class = "submit" type="submit" formaction="{% url 'login_details' %}" value="LOGIN" ><br><br> 
+                
+             </form> 
+
+            
+            <p>Don't have an account?</p> 
+           <a href="{% url 'signup' %}"><button>REGISTER NOW</button></a><br><br><br>
+  </div>
+</div>
+
+</div>
+  
+  
+</div>
+
+</body>
 </html>
     

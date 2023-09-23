@@ -7,8 +7,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Devices</title>
         <!-- <link rel="stylesheet" href="{% static '/css/home_page.css'%}"> -->
-        <link rel="stylesheet" href="{% static '/css/home_1.css'%}">
-        <link rel="stylesheet" href="{% static '/css/style1.css'%}">
+        <link rel="stylesheet" href="{% static '/css/home1.css'%}">
+        <link rel="stylesheet" href="{% static '/css/style_1.css'%}">
         
         <script src="https://kit.fontawesome.com/6351251fd9.js" crossorigin="anonymous"></script>
         <script> 
@@ -128,6 +128,11 @@
             .location{
                 width:80%;
             }
+            .device_names:hover{
+                background-color: #d4fff9;
+                height:10%;
+            }
+           
         </style>
         
     </head>
@@ -138,21 +143,21 @@
             <nav class="navbar navbar-expand-sm navbar-default">
     
                 <div id="main-menu" class="main-menu collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav" >
                        
     
-                      <li>
+                      <li class="nav-item active" >
                        <a href="{% url 'dashboard' %}"  ><i class="menu-icon fa fa-automobile"></i>My Device</a></li>
-                        <li >
-                            <a href="{% url 'profile_page' %}" > <i class="menu-icon fa fa-user-plus"></i>Profile</a>
+                        <li class="nav-item" >
+                            <a href="{% url 'profile_page' %}" style="font-family: 'Times New Roman', Times, serif;"> <i class="menu-icon fa fa-user-plus"></i>Profile</a>
                            
                             
                         </li>
-                        <li>
+                        <li class="nav-item">
                             <a href="{% url 'analytics' %}"><i class="menu-icon fa fa-bar-chart"></i>Analytics</a>
                         </li> 
 
-                        <li>
+                        <li class="nav-item">
                             <a href="{% url 'logout' %}"><i class="menu-icon fa fa-sign-out"> </i>Logout</a>
                         </li>
     
@@ -175,11 +180,11 @@
                     <div class="navbar-header">
                         <a class="navbar-brand" href=""><img src="{% static '/image/logo1.png'%}" alt="Logo"></a>
                        
-                        <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                        <a id="menuToggle" class="menutoggle" style="margin-left: -25%;margin-top:-5%;width:10%;"><i class="fa fa-bars" style="color:#00dfc0;width:10%;font-size: 150%;"></i></a>
                     </div>
                 </div>
                
-            <center><div class="head"> IOT- PLATFORM</div></center>
+            <div class="head" style="color:black"> IOT- PLATFORM</div>
             </header>
 
             <br><br><br><br>
@@ -188,7 +193,7 @@
               </div>
             <div class="data_container" id="blur">  
                 <div class="create_device">
-                    <button id="new_device" onclick="toggle()"><i class="fa-solid fa-plus"></i> create new location</button>
+                    <button id="new_device" onclick="toggle()" style="background-color:#00dfc0"><i class="fa-solid fa-plus"></i> create new location</button>
                 </div>
 
                 <h2>My Location</h2>
@@ -199,7 +204,7 @@
                         <ul class="location">
                         {% for x in devices %}
 
-                            <li> <a href="{% url 'device_page' devicename=x.device_name  %}">{{ x.device_name }} </a> <i class="fa fa-trash" aria-hidden="true" onclick="delete_device('{{ x.device_name }}')"></i>
+                            <li class="device_names"> <a href="{% url 'device_page' devicename=x.device_name  %}"  style="color:black;margin-top:10%;margin-left:2%;">{{ x.device_name }} </a> <i class="fa fa-trash" aria-hidden="true" onclick="delete_device('{{ x.device_name }}')" style="color:#00dfc0;margin-top: 1.5%;margin-right:1.5%;"></i>
                             </li> 
 
                         {% endfor %}
@@ -212,14 +217,14 @@
                 
             </div>
             <div class="popup" id="popup_id">
-                <h3>Create new Location</h3> <button id="close-btn" onclick="toggle()">&times;</button> <br>
+                <h3>Create new Location</h3> <button id="close-btn" onclick="toggle()" style="background-color:#00dfc0;color:white;">&times;</button> <br>
                 <form method='POST' > 
                     {% csrf_token %}
                     
                     
-                    <label for="device_name">Location name : </label> 
+                    <label for="device_name" >Location name : </label> 
                     <input type="text" name="device_name"> <br><br>
-                    <input type="submit" value="create" formaction="{% url 'add_device' %}"> <br><br>
+                    <input type="submit" value="create" formaction="{% url 'add_device' %}" style="background-color:#00dfc0"> <br><br>
                 </form>
             </div>
         </div>
@@ -237,6 +242,17 @@
            
         location.reload(true);
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+ 
+            $('ul.navbar-nav>.active> li')
+                    .click(function (e) {
+                $('ul.navbar-nav > li')
+                    .removeClass('active');
+                $(this).addClass('active');
+            });
+        });
     </script>
         
     </body>

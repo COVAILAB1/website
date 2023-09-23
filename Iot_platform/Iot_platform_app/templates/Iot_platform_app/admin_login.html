@@ -5,29 +5,133 @@
     <head>
         <title>Admin Login page</title> 
         <link rel="stylesheet" href="{% static '/css/login.css'%}">
+        <style>
+            label{
+                font-size: 18px;
+            }
+            
+            .data{
+                border:none;
+                border-bottom: 2px solid rgb(82, 81, 81);
+                width:320px;
+                height: 30px;
+                float:center;
+            }
+            input:focus{
+                outline: none;
+                box-shadow: 0px 0px 2px #000000;
+                border-color: #5AB0DB;
+            }
+            .data:focus{
+                border:none;
+                
+            }
+            .submit{
+                background-color:#00dfc0;
+                color: white;
+                width: 300px;
+                border:none;
+                height: 40px;
+                border-radius: 10px;
+                
+               
+            }
+            button{
+                
+                    background-color:#00dfc0;
+                    color: white;
+                    width: 300px;
+                    border:none;
+                    height: 40px;
+                    border-radius: 10px;
+                   
+                
+            }
+            
+            
+            
+            
+            .column {
+                float: left;
+                width: 98%;
+              }
+            
+              
+             .card {
+              box-shadow: 0 4px 8px 0 rgba(0,0,0,0.9);
+              transition: 0.5s;
+              width:70%;
+              height:auto;
+              margin-left:15%;
+              margin-top:5%;
+            }
+            
+            .card:hover {
+              box-shadow: 0 8px 16px 0 rgba(0,0,0,0.9);
+            }
+            
+            .left {
+              float: left;
+              width: 30%;
+              
+             
+              padding: 10px;
+              height: 450px; /* Should be removed. Only for demonstration */
+            }
+            .right {
+              float: right;
+              width: 55%;
+              padding: 10px;
+              height: 300px; /* Should be removed. Only for demonstration */
+            }
+            /* Clear floats after the columns */
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+            
+            /* Clear floats after the columns */
+            img {
+              float:center;
+              margin-top:50%
+             
+            
+            }
+            h3{
+            margin-left:20%;
+            }
+            </style>
     </head>
     <body>
         <div>
             {% include 'Iot_platform_app/message.html' %}
           </div>
-        <h1>IOT PLATFORM</h1>
-        <div class="column">
-        <div class="image">
-            <img src="{% static '/image/login.png'%}" alt="" style="width:298%;padding-left:166px;margin-top:-27px">
-        </div>
-        <div class="container">
-            <h3>ADMIN LOGIN</h3><br>
-            <form method='POST'>
-                {% csrf_token %}
-                <label for="adminmail">Email ID</label> <br>
-                <input class = "data"type="email" name="adminmail" > <br><br>
-
-                <label for="pass">Password</label> <br>
-                <input  class = "data" type="password" name="pass" >  <br><br><br>
-
-                <input class = "submit" type="submit" value="LOGIN" formaction="{% url 'admin_register' %}"><br><br>
-                
-            </form>
+        <h1 style="color:black;">IOT PLATFORM</h1>
+        
+        <div class="card">
+            <div class="row">
+              <div class="column left" style="background-color:#00dfc0">
+               <img src="{% static '/image/login_img.png' %}" style="width:70%;">  
+              </div>
+              <div class="column right ">
+                      
+                         <h3>ADMIN LOGIN</h3><br>
+                        <form method='POST'>
+                            {% csrf_token %}
+                            <label for="adminmail">Email ID</label> <br>
+                            <input class = "data"type="email" name="adminmail" > <br><br>
+            
+                            <label for="pass">Password</label> <br>
+                            <input  class = "data" type="password" name="pass" >  <br><br><br>
+            
+                            <input class = "submit" type="submit" value="LOGIN" formaction="{% url 'admin_register' %}"><br><br>
+                            
+                        </form>
+                    
+            </div>
+            
+            </div>
 
             
           
