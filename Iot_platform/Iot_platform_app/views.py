@@ -349,136 +349,163 @@ def mqtt_view_subscribe(request,device_name):
         print(recieved_messages)
         
         if len(topics_lis)==4:
-            
-            table_name = f"{topic_id[0]}"
-            
-            dynamic_model = apps.get_model(app_label='Iot_platform_app', model_name=table_name)
-            if dynamic_model is not None:
-    
-                new_data = {
-                    
-                    'common_field_2': recieved_messages[topics_lis[0]],
-                }
-                obj = dynamic_model(**new_data)
-                obj.save()
+            try:
+                table_name = f"{topic_id[0]}"
+                
+                dynamic_model = apps.get_model(app_label='Iot_platform_app', model_name=table_name)
+                if dynamic_model is not None:
+        
+                    new_data = {
+                        
+                        'common_field_2': recieved_messages[topics_lis[0]],
+                    }
+                    obj = dynamic_model(**new_data)
+                    obj.save()
+            except:
+                recieved_messages[topics_lis[0]] = 0
+            try:
+                table_name1 = f"{topic_id[1]}"
+                
+                dynamic_model1 = apps.get_model(app_label='Iot_platform_app', model_name=table_name1)
+                if dynamic_model1 is not None:
+        
+                    new_data1 = {
+                        
+                        'common_field_2': recieved_messages[topics_lis[1]],
+                    }
+                    obj1 = dynamic_model1(**new_data1)
+                    obj1.save()
+            except:
+                recieved_messages[topics_lis[1]] = 0
+            try:
+                table_name2 = f"{topic_id[2]}"
+                
+                dynamic_model2 = apps.get_model(app_label='Iot_platform_app', model_name=table_name2)
+                if dynamic_model2 is not None:
+        
+                    new_data2 = {
+                        
+                        'common_field_2': recieved_messages[topics_lis[2]],
+                    }
+                    obj2 = dynamic_model2(**new_data2)
+                    obj2.save()
+            except:
+                recieved_messages[topics_lis[2]] = 0
+            try:
+                table_name3 = f"{topic_id[3]}"
 
-            table_name1 = f"{topic_id[1]}"
-            
-            dynamic_model1 = apps.get_model(app_label='Iot_platform_app', model_name=table_name1)
-            if dynamic_model1 is not None:
-    
-                new_data1 = {
-                    
-                    'common_field_2': recieved_messages[topics_lis[1]],
-                }
-                obj1 = dynamic_model1(**new_data1)
-                obj1.save()
-            table_name2 = f"{topic_id[2]}"
-            
-            dynamic_model2 = apps.get_model(app_label='Iot_platform_app', model_name=table_name2)
-            if dynamic_model2 is not None:
-    
-                new_data2 = {
-                    
-                    'common_field_2': recieved_messages[topics_lis[2]],
-                }
-                obj2 = dynamic_model2(**new_data2)
-                obj2.save()
-            table_name3 = f"{topic_id[3]}"
-            
-            dynamic_model3 = apps.get_model(app_label='Iot_platform_app', model_name=table_name3)
-            if dynamic_model3 is not None:
-    
-                new_data3 = {
-                    
-                    'common_field_2': recieved_messages[topics_lis[3]],
-                }
-                obj3 = dynamic_model3(**new_data3)
-                obj3.save()
+                
+                dynamic_model3 = apps.get_model(app_label='Iot_platform_app', model_name=table_name3)
+                if dynamic_model3 is not None:
+        
+                    new_data3 = {
+                        
+                        'common_field_2': recieved_messages[topics_lis[3]],
+                    }
+                    obj3 = dynamic_model3(**new_data3)
+                    obj3.save()
+            except:
+                recieved_messages[topics_lis[3]] = 0
 
             return JsonResponse({'change_variable0':recieved_messages[topics_lis[0]],'change_variable1':recieved_messages[topics_lis[1]],'change_variable2':recieved_messages[topics_lis[2]],'change_variable3':recieved_messages[topics_lis[3]]})
             
             
         elif len(topics_lis)==3:
+            try:
+                table_name = f"{topic_id[0]}"
+                
+                dynamic_model = apps.get_model(app_label='Iot_platform_app', model_name=table_name)
+                if dynamic_model is not None:
+        
+                    new_data = {
+                        
+                        'common_field_2': recieved_messages[topics_lis[0]],
+                    }
+                    obj = dynamic_model(**new_data)
+                    obj.save()
             
-            table_name = f"{topic_id[0]}"
-            
-            dynamic_model = apps.get_model(app_label='Iot_platform_app', model_name=table_name)
-            if dynamic_model is not None:
-    
-                new_data = {
-                    
-                    'common_field_2': recieved_messages[topics_lis[0]],
-                }
-                obj = dynamic_model(**new_data)
-                obj.save()
-
-            table_name1 = f"{topic_id[1]}"
-            
-            dynamic_model1 = apps.get_model(app_label='Iot_platform_app', model_name=table_name1)
-            if dynamic_model1 is not None:
-    
-                new_data1 = {
-                    
-                    'common_field_2': recieved_messages[topics_lis[1]],
-                }
-                obj1 = dynamic_model1(**new_data1)
-                obj1.save()
-            table_name2 = f"{topic_id[2]}"
-            
-            dynamic_model2 = apps.get_model(app_label='Iot_platform_app', model_name=table_name2)
-            if dynamic_model2 is not None:
-    
-                new_data2 = {
-                    
-                    'common_field_2': recieved_messages[topics_lis[2]],
-                }
-                obj2 = dynamic_model2(**new_data2)
-                obj2.save()
+            except:
+                recieved_messages[topics_lis[0]] = 0
+            try:
+                table_name1 = f"{topic_id[1]}"
+                
+                dynamic_model1 = apps.get_model(app_label='Iot_platform_app', model_name=table_name1)
+                if dynamic_model1 is not None:
+        
+                    new_data1 = {
+                        
+                        'common_field_2': recieved_messages[topics_lis[1]],
+                    }
+                    obj1 = dynamic_model1(**new_data1)
+                    obj1.save()
+            except:
+                recieved_messages[topics_lis[1]] = 0
+            try:
+                table_name2 = f"{topic_id[2]}"
+                
+                dynamic_model2 = apps.get_model(app_label='Iot_platform_app', model_name=table_name2)
+                if dynamic_model2 is not None:
+        
+                    new_data2 = {
+                        
+                        'common_field_2': recieved_messages[topics_lis[2]],
+                    }
+                    obj2 = dynamic_model2(**new_data2)
+                    obj2.save()
+            except:
+                recieved_messages[topics_lis[2]] = 0
             return JsonResponse({'change_variable0':recieved_messages[topics_lis[0]],'change_variable1':recieved_messages[topics_lis[1]],'change_variable2':recieved_messages[topics_lis[2]]})
             
 
         elif len(topics_lis)==2:
-             
-            table_name = f"{topic_id[0]}"
-            
-            dynamic_model = apps.get_model(app_label='Iot_platform_app', model_name=table_name)
-            if dynamic_model is not None:
-    
-                new_data = {
-                    
-                    'common_field_2': recieved_messages[topics_lis[0]],
-                }
-                obj = dynamic_model(**new_data)
-                obj.save()
+            try:
+                table_name = f"{topic_id[0]}"
+                
+                dynamic_model = apps.get_model(app_label='Iot_platform_app', model_name=table_name)
+                if dynamic_model is not None:
+        
+                    new_data = {
+                        
+                        'common_field_2': recieved_messages[topics_lis[0]],
+                    }
+                    obj = dynamic_model(**new_data)
+                    obj.save()
+            except:
+                recieved_messages[topics_lis[0]] = 0
+            try:
+                table_name1 = f"{topic_id[1]}"
+                
+                dynamic_model1 = apps.get_model(app_label='Iot_platform_app', model_name=table_name1)
+                if dynamic_model1 is not None:
+        
+                    new_data1 = {
+                        
+                        'common_field_2': recieved_messages[topics_lis[1]],
+                    }
+                    obj1 = dynamic_model1(**new_data1)
+                    obj1.save()
 
-            table_name1 = f"{topic_id[1]}"
-            
-            dynamic_model1 = apps.get_model(app_label='Iot_platform_app', model_name=table_name1)
-            if dynamic_model1 is not None:
-    
-                new_data1 = {
-                    
-                    'common_field_2': recieved_messages[topics_lis[1]],
-                }
-                obj1 = dynamic_model1(**new_data1)
-                obj1.save()
+            except:
+                recieved_messages[topics_lis[1]] = 0
             return JsonResponse({'change_variable0':recieved_messages[topics_lis[0]],'change_variable1':recieved_messages[topics_lis[1]]})
              
         elif len(topics_lis)==1:
-           
-            table_name = f"{topic_id[0]}"
-            
-            dynamic_model = apps.get_model(app_label='Iot_platform_app', model_name=table_name)
-            if dynamic_model is not None:
-    
-                new_data = {
-                    
-                    'common_field_2': recieved_messages[topics_lis[0]],
-                }
-                obj = dynamic_model(**new_data)
-                obj.save()
+            try:
+                table_name = f"{topic_id[0]}"
+                
+                dynamic_model = apps.get_model(app_label='Iot_platform_app', model_name=table_name)
+                if dynamic_model is not None:
         
+                    new_data = {
+                        
+                        'common_field_2': recieved_messages[topics_lis[0]],
+                    }
+                    obj = dynamic_model(**new_data)
+                    obj.save()
+            except:
+                recieved_messages[topics_lis[0]] = 0
+             
+            
             return JsonResponse({'change_variable0':recieved_messages[topics_lis[0]]})
             
         else:
