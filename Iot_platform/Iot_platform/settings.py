@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-px@tvj#f94l8e6z%^l*^1g+e438a=^cxa^66o3&pbel$_8elyv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [''iot-test.krishtec.co.in']
+ALLOWED_HOSTS = ['iot-test.krishtec.co.in']
 
 
 # Application definition
