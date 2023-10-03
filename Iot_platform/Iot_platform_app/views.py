@@ -362,7 +362,10 @@ def mqtt_view_subscribe(request,device_name):
                     obj = dynamic_model(**new_data)
                     obj.save()
             except:
-                recieved_messages[topics_lis[0]] = 0
+                if recieved_messages.get(topics_lis[0]) != None:
+                    recieved_messages[topics_lis[0]] = recieved_messages[topics_lis[0]]
+                else:
+                    recieved_messages[topics_lis[0]] = 0
             try:
                 table_name1 = f"{topic_id[1]}"
                 
@@ -376,7 +379,10 @@ def mqtt_view_subscribe(request,device_name):
                     obj1 = dynamic_model1(**new_data1)
                     obj1.save()
             except:
-                recieved_messages[topics_lis[1]] = 0
+                if recieved_messages.get(topics_lis[1]) != None:
+                    recieved_messages[topics_lis[1]] = recieved_messages[topics_lis[1]]
+                else:
+                    recieved_messages[topics_lis[1]] = 0
             try:
                 table_name2 = f"{topic_id[2]}"
                 
@@ -390,7 +396,10 @@ def mqtt_view_subscribe(request,device_name):
                     obj2 = dynamic_model2(**new_data2)
                     obj2.save()
             except:
-                recieved_messages[topics_lis[2]] = 0
+                if recieved_messages.get(topics_lis[2]) != None:
+                    recieved_messages[topics_lis[2]] = recieved_messages[topics_lis[2]]
+                else:
+                    recieved_messages[topics_lis[2]] = 0
             try:
                 table_name3 = f"{topic_id[3]}"
 
@@ -405,7 +414,10 @@ def mqtt_view_subscribe(request,device_name):
                     obj3 = dynamic_model3(**new_data3)
                     obj3.save()
             except:
-                recieved_messages[topics_lis[3]] = 0
+                if recieved_messages.get(topics_lis[3]) != None:
+                    recieved_messages[topics_lis[3]] = recieved_messages[topics_lis[3]]
+                else:
+                    recieved_messages[topics_lis[3]] = 0
 
             return JsonResponse({'change_variable0':recieved_messages[topics_lis[0]],'change_variable1':recieved_messages[topics_lis[1]],'change_variable2':recieved_messages[topics_lis[2]],'change_variable3':recieved_messages[topics_lis[3]]})
             
@@ -425,7 +437,10 @@ def mqtt_view_subscribe(request,device_name):
                     obj.save()
             
             except:
-                recieved_messages[topics_lis[0]] = 0
+                if recieved_messages.get(topics_lis[0]) != None:
+                    recieved_messages[topics_lis[0]] = recieved_messages[topics_lis[0]]
+                else:
+                    recieved_messages[topics_lis[0]] = 0
             try:
                 table_name1 = f"{topic_id[1]}"
                 
@@ -439,7 +454,10 @@ def mqtt_view_subscribe(request,device_name):
                     obj1 = dynamic_model1(**new_data1)
                     obj1.save()
             except:
-                recieved_messages[topics_lis[1]] = 0
+                if recieved_messages.get(topics_lis[1]) != None:
+                    recieved_messages[topics_lis[1]] = recieved_messages[topics_lis[1]]
+                else:
+                    recieved_messages[topics_lis[1]] = 0
             try:
                 table_name2 = f"{topic_id[2]}"
                 
@@ -453,7 +471,10 @@ def mqtt_view_subscribe(request,device_name):
                     obj2 = dynamic_model2(**new_data2)
                     obj2.save()
             except:
-                recieved_messages[topics_lis[2]] = 0
+                if recieved_messages.get(topics_lis[2]) != None:
+                    recieved_messages[topics_lis[2]] = recieved_messages[topics_lis[2]]
+                else:
+                    recieved_messages[topics_lis[2]] = 0
             return JsonResponse({'change_variable0':recieved_messages[topics_lis[0]],'change_variable1':recieved_messages[topics_lis[1]],'change_variable2':recieved_messages[topics_lis[2]]})
             
 
@@ -471,7 +492,10 @@ def mqtt_view_subscribe(request,device_name):
                     obj = dynamic_model(**new_data)
                     obj.save()
             except:
-                recieved_messages[topics_lis[0]] = 0
+                if recieved_messages.get(topics_lis[0]) != None:
+                    recieved_messages[topics_lis[0]] = recieved_messages[topics_lis[0]]
+                else:
+                    recieved_messages[topics_lis[0]] = 0
             try:
                 table_name1 = f"{topic_id[1]}"
                 
@@ -486,7 +510,10 @@ def mqtt_view_subscribe(request,device_name):
                     obj1.save()
 
             except:
-                recieved_messages[topics_lis[1]] = 0
+                if recieved_messages.get(topics_lis[1]) != None:
+                    recieved_messages[topics_lis[1]] = recieved_messages[topics_lis[1]]
+                else:
+                    recieved_messages[topics_lis[1]] = 0
             return JsonResponse({'change_variable0':recieved_messages[topics_lis[0]],'change_variable1':recieved_messages[topics_lis[1]]})
              
         elif len(topics_lis)==1:
@@ -503,7 +530,10 @@ def mqtt_view_subscribe(request,device_name):
                     obj = dynamic_model(**new_data)
                     obj.save()
             except:
-                recieved_messages[topics_lis[0]] = 0
+                if recieved_messages.get(topics_lis[0]) != None:
+                    recieved_messages[topics_lis[0]] = recieved_messages[topics_lis[0]]
+                else:
+                    recieved_messages[topics_lis[0]] = 0
              
             
             return JsonResponse({'change_variable0':recieved_messages[topics_lis[0]]})
